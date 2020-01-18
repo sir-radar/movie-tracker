@@ -7,7 +7,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  font-size: 16px;
+}
+
+*{
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.bg-header{
+  background-color: #4B55A1;
+}
+
+.primary-text-color{
+  color: #4B55A1;
+}
+
+nav > a{
+  font-size: 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a.active{
+  color: #EC6159;
+  border-bottom: 2px solid #EC6159;
+}
+
+a:hover{
+  text-decoration: none;
 }

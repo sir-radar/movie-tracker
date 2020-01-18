@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-const SearchBox = () => {
+const SearchBox = ({onSearch}) => {
   const [search, setSearch] = useState('');
   const [error, setError] = useState('');
 
@@ -10,6 +10,7 @@ const SearchBox = () => {
     setError(error)
     if (error.length > 0) return;
     console.log(search)
+    onSearch(search);
   }
 
   const validate = (title) => {

@@ -9,14 +9,15 @@ const SearchBox = ({onSearch}) => {
     const error = validate(search)
     setError(error)
     if (error.length > 0) return;
-    console.log(search)
     onSearch(search);
   }
 
+  //validate search 
   const validate = (title) => {
-    if (title.trim().length === 0) return 'Title is required!';
+    if (title.trim().length === 0) return 'Type in something!';
     return '';
   }
+  
   return (
     <div className="row justify-content-center">
       <div className="col-md-10">
@@ -27,7 +28,7 @@ const SearchBox = ({onSearch}) => {
               <button className="btn px-3 btn-background"><i className="fa fa-search text-white"></i></button>
             </div>
           </div>
-          <p className='error'>{ error }</p>
+          <p className='error text-danger'>{ error }</p>
         </form>
       </div>
     </div>

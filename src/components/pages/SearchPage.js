@@ -4,48 +4,58 @@ import SearchBox from '../SearchBox';
 import MovieCard from '../MovieCard';
 import { search } from '../../store/actions/searchActions';
 import { getSessionID } from '../../store/actions/authActions';
-import { addToFavorite, removeFromFavorite } from '../../store/actions/favouritesActions';
+import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
 
-const SearchPage = ({ createSession, session_id, searchStatus, data, addToFavorite, removeFavorite, favoriteIDs, search  }) => {
-  // const { createSession, session_id, searchStatus, data, addToFavorite, removeFavorite, favoriteIDs, search  } = props;
-  
+const SearchPage = (props) => {
+  const { createSession, session_id, searchStatus, movies, addToFavourite, removeFavourite, favouriteIDs, search } = props;
+
+  //create session_id if it doesn't exist
   useEffect(() => {
-    createSession()
-    console.log('useEffect')
-  }, [session_id]);
+    if(!session_id){
+      createSession()
+    }
+  }, [createSession, session_id]);
+
   return (
-    <main className="mt-4 p-3 col-8 offset-2">
-      <SearchBox
-        onSearch={ (title) => search(title) }
-      />
+      <>
+        <SearchBox
+          onSearch={ (title) => search(title) }
+        />
 
-      <div className="row justify-content-center">
-        {
-          (searchStatus === 'SUCCESS') ? data.results.map(result => <MovieCard
-              key={result.id}
-              id={result.id}
-              title={result.title}
-              image={result.poster_path}
-              overview={result.overview}
-              addToFavorite={addToFavorite}
-              removeFavorite={removeFavorite}
-              favoriteIDs={favoriteIDs}
-             />) 
+        <div className="row justify-content-center">
+          {
+            (searchStatus === 'SUCCESS') ? movies.results.map(result => <MovieCard
+                key={result.id}
+                id={result.id}
+                title={result.title}
+                image={result.poster_path}
+                overview={result.overview}
+                addToFavourite={addToFavourite}
+                removeFavourite={removeFavourite}
+                favouriteIDs={favouriteIDs}
+              />) 
+            
+            : null
+          }
+
+          {
+            (searchStatus === 'PENDING')
+            ? <section className='loading'>
+                <i className="fa fa-spinner fa-5x fa-spin"></i>
+              </section>
+            : null
+          }
+
+          {
+            (searchStatus === 'SUCCESS' && movies.results.length < 1)
+            ? <section className='loading'>
+                <h2>No data to display</h2>
+              </section>
+            : null
+          }
           
-          : null
-        }
-
-        {
-          (searchStatus === 'PENDING')
-          ? <section className='loading'>
-              <i className="fa fa-spinner fa-5x fa-spin"></i>
-            </section>
-          : null
-        }
-        
-      </div>
-      
-    </main>
+        </div>
+      </>
   );
 }
 
@@ -53,9 +63,9 @@ const mapStateToProps = (state) => (
   {
     searchStatus: state.status.search,
     searchError: state.status.searchError,
-    data: state.search,
+    movies: state.search,
     session_id: state.auth.session_id,
-    favoriteIDs: state.favorites.favouriteMoviesID,
+    favouriteIDs: state.favourites.favouriteMoviesID,
   }
 );
   
@@ -63,8 +73,8 @@ const mapDispatchToProps = (dispatch) => (
   {
     search: (title) => dispatch(search(title)),
     createSession: () => dispatch(getSessionID()),
-    addToFavorite: (payload) => dispatch(addToFavorite(payload)),
-    removeFavorite: (payload) => dispatch(removeFromFavorite(payload)),
+    addToFavourite: (payload) => dispatch(addToFavourite(payload)),
+    removeFavourite: (payload) => dispatch(removeFromFavourite(payload)),
   }
 )
 

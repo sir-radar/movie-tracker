@@ -28,18 +28,18 @@ export default (state = initialState, action) => {
       searchError: action.error, 
     },
     // save favorite statuses
-    // 'SAVE_FAVORITE_SUCCESS': {
-    //   saveFavorite: 'SUCCESS',
-    //   saveFavoriteError: '',
-    // },
-    // 'SAVE_FAVORITE_FAILURE': {
-    //   saveFavorite: 'ERROR',
-    //   saveFavoriteError: action.error,
-    // },
-    // 'RESET_SAVE_FAVORITE': {
-    //   saveFavorite: '',
-    //   saveFavoriteError: '',
-    // },
+    'FAVORITE_REQUEST': {
+      favourites: 'PENDING',
+      favouriteError: '',
+    },
+    'GET_FAVOURITES_SUCCESS': {
+      favourites: 'SUCCESS',
+      favouriteError: '',
+    },
+    'GET_FAVOURITES_FAILURE': {
+      favourite: 'ERROR',
+      favouriteError: action.error
+    },
     // // update rating statuses
     // 'UPDATE_RATING_SUCCESS': {
     //   updateRating: 'SUCCESS',

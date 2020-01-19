@@ -16,14 +16,18 @@ function App() {
   return (
     <div className="App container-fluid">
       <Header/>
-      <Router>
-        <Nav/>
-        <Switch>
-            <Route exact path="/" component={SearchPage} />
-            <Route path="/favourites" component={Favourites} />
-            <Route path="/watchlist" component={WatchLater} />
-        </Switch>
-      </Router>
+      
+        <Router>
+          <Nav/>
+          <main className="mt-4 p-3 col-8 offset-2">
+          <Switch>
+              <Route exact path="/" component={SearchPage} />
+              <Route path="/favourites" component={Favourites} />
+              <Route path="/watchlist" component={WatchLater} />
+          </Switch>
+        
+          </main>
+        </Router>
     </div>
   )
   

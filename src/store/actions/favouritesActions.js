@@ -1,75 +1,81 @@
 import API from '../../utils/api';
 
-export const saveFavoriteSuccess = (favorite) => ({
-  type: 'SAVE_FAVORITE_SUCCESS', favorite
+export const favouriteRequest = () => ({
+  type: 'FAVORITE_REQUEST'
 });
 
-export const saveFavoriteFailure = (error) => ({
-  type: 'SAVE_FAVORITE_FAILURE', error
+export const saveFavouriteSuccess = (favorite) => ({
+  type: 'SAVE_FAVOURITE_SUCCESS', favorite
 });
 
-export const removeFavoriteSuccess = (favorite) => ({
-  type: 'REMOVE_FAVORITE_SUCCESS', favorite
+export const saveFavouriteFailure = (error) => ({
+  type: 'SAVE_FAVOURITE_FAILURE', error
 });
 
-export const removeFavoriteFailure = (favorite) => ({
-  type: 'REMOVE_FAVORITE_FAILURE', favorite
+export const removeFavouriteSuccess = (favorite) => ({
+  type: 'REMOVE_FAVOURITE_SUCCESS', favorite
 });
 
-export const getFavoritesSuccess = (favorites) => ({
-  type: 'GET_FAVORITES_SUCCESS', favorites
+export const removeFavouriteFailure = (favorite) => ({
+  type: 'REMOVE_FAVOURITE_FAILURE', favorite
 });
 
-export const getFavoritesFailure = (error) => ({
-  type: 'GET_FAVORITES_FAILURE', error
+export const getFavouritesSuccess = (favorites) => ({
+  type: 'GET_FAVOURITES_SUCCESS', favorites
+});
+
+export const getFavouritesFailure = (error) => ({
+  type: 'GET_FAVOURITES_FAILURE', error
 });
 
 //Favourite API calls
 
 //adds movie to favourites list
-export function addToFavorite(payload) {
+export function addToFavourite(payload) {
   return (dispatch, getState) => {
 
     const session_id = getState().auth.session_id;
     
-    API.addToFavorite(session_id, payload)
+    API.addToFavourite(session_id, payload)
       .then( _ => {
-        dispatch(saveFavoriteSuccess(payload.media_id))
+        dispatch(saveFavouriteSuccess(payload.media_id))
       })
       .catch(error => {
-        dispatch(saveFavoriteFailure(error.response.data))
+        dispatch(saveFavouriteFailure(error.response.data))
       });
   }
 }
 
 //removes movie from favourites list
-export function removeFromFavorite(payload) {
+export function removeFromFavourite(payload) {
   return (dispatch, getState) => {
 
     const session_id = getState().auth.session_id;
     
-    API.addToFavorite(session_id, payload)
+    API.addToFavourite(session_id, payload)
       .then( _ => {
-        dispatch(removeFavoriteSuccess(payload.media_id))
+        dispatch(removeFavouriteSuccess(payload.media_id))
       })
       .catch(error => {
-        dispatch(removeFavoriteFailure(error.response.data))
+        dispatch(removeFavouriteFailure(error.response.data))
       });
   }
 }
 
 //gets all favourite movies
-export function getAllFavorites() {
+export function getAllFavourites() {
   return (dispatch, getState) => {
 
     const session_id = getState().auth.session_id;
+
+    dispatch(favouriteRequest());
     
-    API.getAllFavorites(session_id)
+    API.getAllFavourites(session_id)
       .then(response => {
-        dispatch(getFavoritesSuccess(response.data))
+        dispatch(getFavouritesSuccess(response.data))
       })
       .catch(error => {
-        dispatch(getFavoritesFailure(error.response.data))
+        dispatch(getFavouritesFailure(error.response.data))
       });
   }
 }

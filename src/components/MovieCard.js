@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieCard = ({id, title, image, overview,addToFavorite, removeFavorite, favoriteIDs}) => {
+const MovieCard = ({id, title, image, overview, addToFavourite , removeFavourite, favouriteIDs}) => {
 
   const truncate = (str) => str.length > 100 ? str.substring(0, 100) + "..." : str;
 
@@ -11,16 +11,16 @@ const MovieCard = ({id, title, image, overview,addToFavorite, removeFavorite, fa
       "favorite": true
     };
     e.preventDefault()
-    addToFavorite(data)
+    addToFavourite(data)
   }
 
-  const removeFavourite = () => {
+  const removeFromFavourites = () => {
     const data = {
       "media_type": "movie",
       "media_id": id,
       "favorite": false
     };
-    removeFavorite(data)
+    removeFavourite(data)
   }
 
   return (
@@ -35,7 +35,7 @@ const MovieCard = ({id, title, image, overview,addToFavorite, removeFavorite, fa
           <a href="#" className="btn btn-primary">Go somewhere</a>
           <div className="d-flex">
             {
-              favoriteIDs.includes(id) ? <button onClick={removeFavourite} className="btn mr-2"><i className="fa fa-star text-favourite"></i></button>
+              favouriteIDs.includes(id) ? <button onClick={removeFromFavourites} className="btn mr-2"><i className="fa fa-star text-favourite"></i></button>
                 : <button onClick={makeFavourite} className="btn mr-2"><i className="fa fa-star"></i></button>
             }
             

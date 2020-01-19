@@ -1,23 +1,26 @@
 import React from 'react';
 
-const MovieCard = ({id, title, image, overview, session, session_id, addToFavorite}) => {
+const MovieCard = ({id, title, image, overview,addToFavorite, removeFavorite, favoriteIDs}) => {
 
   const truncate = (str) => str.length > 100 ? str.substring(0, 100) + "..." : str;
 
-  const handleClick = (e) =>{
+  const makeFavourite = (e) =>{
     const data = {
       "media_type": "movie",
       "media_id": id,
       "favorite": true
     };
     e.preventDefault()
-    // session()
-    if(!session_id){
-      session().then(()=> addToFavorite(data))
-    }else{
-      addToFavorite(data)
-    }
-    console.log(session_id)
+    addToFavorite(data)
+  }
+
+  const removeFavourite = () => {
+    const data = {
+      "media_type": "movie",
+      "media_id": id,
+      "favorite": false
+    };
+    removeFavorite(data)
   }
 
   return (
@@ -31,7 +34,11 @@ const MovieCard = ({id, title, image, overview, session, session_id, addToFavori
         <div className="align-self-center actions">
           <a href="#" className="btn btn-primary">Go somewhere</a>
           <div className="d-flex">
-            <button onClick={handleClick} className="btn mr-2"><i className="fa fa-star"></i></button>
+            {
+              favoriteIDs.includes(id) ? <button onClick={removeFavourite} className="btn mr-2"><i className="fa fa-star text-favourite"></i></button>
+                : <button onClick={makeFavourite} className="btn mr-2"><i className="fa fa-star"></i></button>
+            }
+            
             <button className="btn">Watch later</button>
           </div>
         </div>

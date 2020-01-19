@@ -1,36 +1,42 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import SearchBox from '../SearchBox';
 import MovieCard from '../MovieCard';
 import { search } from '../../store/actions/searchActions';
 import { getSessionID } from '../../store/actions/authActions';
-import { addToFavorite } from '../../store/actions/favouritesActions';
+import { addToFavorite, removeFromFavorite } from '../../store/actions/favouritesActions';
 
-const SearchPage = (props) => (
+const SearchPage = ({ createSession, session_id, searchStatus, data, addToFavorite, removeFavorite, favoriteIDs, search  }) => {
+  // const { createSession, session_id, searchStatus, data, addToFavorite, removeFavorite, favoriteIDs, search  } = props;
+  
+  useEffect(() => {
+    createSession()
+    console.log('useEffect')
+  }, [session_id]);
+  return (
     <main className="mt-4 p-3 col-8 offset-2">
       <SearchBox
-        onSearch={ (title) => props.search(title) }
+        onSearch={ (title) => search(title) }
       />
 
       <div className="row justify-content-center">
         {
-          // console.log(props.data.page)
-          (props.searchStatus === 'SUCCESS') ? props.data.results.map(result => <MovieCard
+          (searchStatus === 'SUCCESS') ? data.results.map(result => <MovieCard
               key={result.id}
               id={result.id}
               title={result.title}
               image={result.poster_path}
               overview={result.overview}
-              session={props.getSession}
-              session_id={props.session_id}
-              addToFavorite={props.addToFavorite}
+              addToFavorite={addToFavorite}
+              removeFavorite={removeFavorite}
+              favoriteIDs={favoriteIDs}
              />) 
           
           : null
         }
 
         {
-          (props.searchStatus === 'PENDING')
+          (searchStatus === 'PENDING')
           ? <section className='loading'>
               <i className="fa fa-spinner fa-5x fa-spin"></i>
             </section>
@@ -40,7 +46,8 @@ const SearchPage = (props) => (
       </div>
       
     </main>
-);
+  );
+}
 
 const mapStateToProps = (state) => (
   {
@@ -48,15 +55,16 @@ const mapStateToProps = (state) => (
     searchError: state.status.searchError,
     data: state.search,
     session_id: state.auth.session_id,
-    // favoriteInfo: state.favorites[state.search.imdbID],
+    favoriteIDs: state.favorites.favouriteMoviesID,
   }
 );
   
 const mapDispatchToProps = (dispatch) => (
   {
     search: (title) => dispatch(search(title)),
-    getSession: () => dispatch(getSessionID()),
+    createSession: () => dispatch(getSessionID()),
     addToFavorite: (payload) => dispatch(addToFavorite(payload)),
+    removeFavorite: (payload) => dispatch(removeFromFavorite(payload)),
   }
 )
 

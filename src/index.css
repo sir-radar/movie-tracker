@@ -52,3 +52,7 @@ a:hover{
   height: 200px;
   object-fit: cover;
 }
+
+.text-favourite{
+  color: #EC6159;
+}

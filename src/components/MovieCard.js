@@ -1,8 +1,24 @@
 import React from 'react';
 
-const MovieCard = ({title, image, overview}) => {
+const MovieCard = ({id, title, image, overview, session, session_id, addToFavorite}) => {
 
   const truncate = (str) => str.length > 100 ? str.substring(0, 100) + "..." : str;
+
+  const handleClick = (e) =>{
+    const data = {
+      "media_type": "movie",
+      "media_id": id,
+      "favorite": true
+    };
+    e.preventDefault()
+    // session()
+    if(!session_id){
+      session().then(()=> addToFavorite(data))
+    }else{
+      addToFavorite(data)
+    }
+    console.log(session_id)
+  }
 
   return (
     <div className="card card-height p-0 col-12 col-md-5 m-2">
@@ -15,7 +31,7 @@ const MovieCard = ({title, image, overview}) => {
         <div className="align-self-center actions">
           <a href="#" className="btn btn-primary">Go somewhere</a>
           <div className="d-flex">
-            <button className="btn mr-2"><i class="fa fa-star"></i></button>
+            <button onClick={handleClick} className="btn mr-2"><i className="fa fa-star"></i></button>
             <button className="btn">Watch later</button>
           </div>
         </div>

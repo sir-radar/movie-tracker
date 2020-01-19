@@ -5,7 +5,7 @@ import {
   Switch
 } from 'react-router-dom';
 import './App.css';
-import Headers from './components/Header';
+import Header from './components/Header';
 import Nav from './components/Nav';
 import SearchPage from './components/pages/SearchPage';
 import Favourites from './components/pages/Favourites';
@@ -15,10 +15,7 @@ import WatchLater from './components/pages/WatchLater';
 function App() {
   return (
     <div className="App container-fluid">
-    {/* <Headers></Headers> */}
-      <header className="row bg-header p-3 text-light font-weight-bolder">
-        Movie Tracker
-      </header>
+      <Header/>
       <Router>
         <Nav/>
         <Switch>

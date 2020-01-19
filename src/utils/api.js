@@ -2,12 +2,13 @@ import axios from 'axios';
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
+const ACCOUNT_ID = process.env.REACT_APP_ACCESS_ACCOUNT_ID;
 
 const SEARCH_URL = (query) => `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`;
-const FAVORITE_URL = (account_id, session_id) =>`${BASE_URL}account/${account_id}/favorite?api_key=${API_KEY}&session_id=${session_id}`;
-const FAVORITES_URL = (account_id,session_id ) => `${BASE_URL}account/${account_id}/favorite/movies?api_key=${API_KEY}&session_id=${session_id}`;
-const WATCHLIST_URL = (account_id,session_id ) => `${BASE_URL}account/${account_id}/watchlist?api_key=${API_KEY}&session_id=${session_id}`;
-const WATCHLISTS_URL = (account_id,session_id ) => `${BASE_URL}account/${account_id}/watchlist/movies?api_key=${API_KEY}&session_id=${session_id}`;
+const FAVORITE_URL = (session_id) =>`${BASE_URL}account/${ACCOUNT_ID}/favorite?api_key=${API_KEY}&session_id=${session_id}`;
+const FAVORITES_URL = (session_id ) => `${BASE_URL}account/${ACCOUNT_ID}/favorite/movies?api_key=${API_KEY}&session_id=${session_id}`;
+const WATCHLIST_URL = (session_id ) => `${BASE_URL}account/${ACCOUNT_ID}/watchlist?api_key=${API_KEY}&session_id=${session_id}`;
+const WATCHLISTS_URL = (session_id ) => `${BASE_URL}account/${ACCOUNT_ID}/watchlist/movies?api_key=${API_KEY}&session_id=${session_id}`;
 const SESSION_URL = `${BASE_URL}authentication/session/convert/4?api_key=${API_KEY}`;
 const ACCOUNT_URL = (session_id) => `${BASE_URL}account?api_key=${API_KEY}&session_id=${session_id}`;
 
@@ -17,24 +18,24 @@ const API = {
     return axios.get(SEARCH_URL(title));
   },
 
-  addToFavorite(account_id, session_id, payload) {
-    return axios.post(FAVORITE_URL(account_id, session_id), payload);
+  addToFavorite(session_id, payload) {
+    return axios.post(FAVORITE_URL(session_id), payload);
   },
 
-  getAllFavorites(account_id, session_id) {
-    return axios.get(FAVORITES_URL(account_id, session_id));
+  getAllFavorites(session_id) {
+    return axios.get(FAVORITES_URL(session_id));
   },
 
-  addToWatchlist(account_id, session_id, payload) {
-    return axios.post(WATCHLIST_URL(account_id, session_id), payload);
+  addToWatchlist(session_id, payload) {
+    return axios.post(WATCHLIST_URL(session_id), payload);
   },
 
-  getAllWatchlist(account_id, session_id) {
-    return axios.get(WATCHLISTS_URL(account_id, session_id));
+  getAllWatchlist(session_id) {
+    return axios.get(WATCHLISTS_URL(session_id));
   },
 
   createSession() {
-    return axios.post(SESSION_URL,{ACCESS_TOKEN});
+    return axios.post(SESSION_URL,{access_token:ACCESS_TOKEN});
   },
 
   getAccountDetails(session_id) {

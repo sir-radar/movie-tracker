@@ -12,6 +12,7 @@ export const searchFailure = (error) => ({
   type: 'SEARCH_FAILURE', error
 });
 
+//Search API calls
 export function search(title) {
   return (dispatch) => {
 

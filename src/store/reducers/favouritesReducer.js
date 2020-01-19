@@ -1,3 +1,4 @@
+//get saved favourite movies id from localstorage
 const favouriteMoviesID = JSON.parse(localStorage.getItem('favourites'));
 const initialState = {
   favouriteMoviesID: favouriteMoviesID || []
@@ -6,6 +7,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SAVE_FAVOURITE_SUCCESS':
+      //save favourite movies id to localstorage
       localStorage.setItem("favourites", JSON.stringify([...state.favouriteMoviesID, action.favorite]));
       return {...state, favouriteMoviesID:[...state.favouriteMoviesID, action.favorite]}
     case 'REMOVE_FAVOURITE_SUCCESS':

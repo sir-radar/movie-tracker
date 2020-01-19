@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
       search: 'ERROR',
       searchError: action.error, 
     },
-    // save favorite statuses
+    // favourite request statuses
     'FAVORITE_REQUEST': {
       favourites: 'PENDING',
       favouriteError: '',

@@ -1,3 +1,4 @@
+//get saved session_id movies id from localstorage
 const session_id = localStorage.getItem('session_id');
 const initialState = {
   session_id

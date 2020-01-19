@@ -8,7 +8,9 @@ export const createSessionFailure = (error) => ({
   type: 'CREATE_SESSION_FAILURE', error
 });
 
+//Session ID auth API call
 export function getSessionID() {
+
   return (dispatch) => {
 
     API.createSession()

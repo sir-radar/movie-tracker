@@ -1,6 +1,8 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard';
+import Loader from '../Loader';
+import NoData from '../NoData';
 import { getAllFavourites, removeFromFavourite } from '../../store/actions/favouritesActions';
 
 const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouriteIDs, favouriteStatus}) => {
@@ -10,7 +12,7 @@ const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouri
   },[getAllFavourites]);
 
   return (
-    <div className="row justify-content-center">
+    <div className="row px-5">
       {
         //display on successful request
         (favouriteStatus === 'SUCCESS') ? favouriteMovies.results.map(result => <MovieCard
@@ -30,18 +32,14 @@ const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouri
       {
         //display while request is pending
         (favouriteStatus === 'PENDING')
-        ? <section className='loading'>
-            <i className="fa fa-spinner fa-5x fa-spin"></i>
-          </section>
+        ? <Loader/>
         : null
       }
       
       {
         //display if there is no favourite
         (favouriteStatus === 'SUCCESS' && favouriteMovies.results.length < 1)
-        ? <section className='loading'>
-            <h2>No data to display</h2>
-          </section>
+        ? <NoData/>
         : null
       }
 

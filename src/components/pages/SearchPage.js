@@ -2,6 +2,8 @@ import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import SearchBox from '../SearchBox';
 import MovieCard from '../MovieCard';
+import Loader from '../Loader';
+import NoData from '../NoData';
 import { search } from '../../store/actions/searchActions';
 import { getSessionID } from '../../store/actions/authActions';
 import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
@@ -22,8 +24,8 @@ const SearchPage = (props) => {
           onSearch={ (title) => search(title) }
         />
 
-        <div className="row justify-content-center">
-          
+        <div className="row px-5">
+
           {
             //display on successful request
             (searchStatus === 'SUCCESS') ? movies.results.map(result => <MovieCard
@@ -43,18 +45,14 @@ const SearchPage = (props) => {
           {
             //display while request is pending
             (searchStatus === 'PENDING')
-            ? <section className='loading'>
-                <i className="fa fa-spinner fa-5x fa-spin"></i>
-              </section>
+            ? <Loader/>
             : null
           }
 
           {
             //display if there is no result
             (searchStatus === 'SUCCESS' && movies.results.length < 1)
-            ? <section className='loading'>
-                <h2>No data to display</h2>
-              </section>
+            ? <NoData/>
             : null
           }
           

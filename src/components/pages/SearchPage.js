@@ -23,7 +23,9 @@ const SearchPage = (props) => {
         />
 
         <div className="row justify-content-center">
+          
           {
+            //display on successful request
             (searchStatus === 'SUCCESS') ? movies.results.map(result => <MovieCard
                 key={result.id}
                 id={result.id}
@@ -39,6 +41,7 @@ const SearchPage = (props) => {
           }
 
           {
+            //display while request is pending
             (searchStatus === 'PENDING')
             ? <section className='loading'>
                 <i className="fa fa-spinner fa-5x fa-spin"></i>
@@ -47,6 +50,7 @@ const SearchPage = (props) => {
           }
 
           {
+            //display if there is no result
             (searchStatus === 'SUCCESS' && movies.results.length < 1)
             ? <section className='loading'>
                 <h2>No data to display</h2>

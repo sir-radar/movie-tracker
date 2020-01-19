@@ -12,6 +12,7 @@ const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouri
   return (
     <div className="row justify-content-center">
       {
+        //display on successful request
         (favouriteStatus === 'SUCCESS') ? favouriteMovies.results.map(result => <MovieCard
             key={result.id}
             id={result.id}

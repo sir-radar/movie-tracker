@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
+import PageLayout from '../layout/PageLayout';
 import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
@@ -24,8 +25,11 @@ const WatchLater = (props) => {
   },[getAllWatchLists]);
 
   return (
-    <div className="row px-5">
-      {
+    <PageLayout
+
+      showNav = {true}
+      
+      pageContent ={ 
         //display on successful request
         (watchlistStatus === 'SUCCESS') ? watchlists.results.map(result => <MovieCard
             key={result.id}
@@ -43,23 +47,21 @@ const WatchLater = (props) => {
         : null
       }
 
-      {
+      loader = {
         //display while request is pending
         (watchlistStatus === 'PENDING')
         ? <Loader/>
         : null
       }
       
-      {
+      nodata = {
         //display if there is no favourite
         (watchlistStatus === 'SUCCESS' && watchlists.results.length < 1)
         ? <NoData/>
         : null
       }
 
-  
-    
-    </div>
+    />
   );
 }
 

@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
+import PageLayout from '../layout/PageLayout';
 import SearchBox from '../SearchBox';
 import MovieCard from '../MovieCard';
 import Loader from '../Loader';
@@ -31,14 +32,18 @@ const SearchPage = (props) => {
   }, [createSession, session_id]);
 
   return (
-      <>
-        <SearchBox
-          onSearch={ (title) => search(title) }
-        />
+        
+        <PageLayout
+        
+          showNav = {true}
 
-        <div className="row px-5">
+          searchbox = {
+            <SearchBox
+              onSearch={ (title) => search(title) }
+            />
+          }
 
-          {
+          pageContent = {
             //display on successful request
             (searchStatus === 'SUCCESS') ? movies.results.map(result => <MovieCard
                 key={result.id}
@@ -57,22 +62,21 @@ const SearchPage = (props) => {
             : null
           }
 
-          {
+          loader = {
             //display while request is pending
             (searchStatus === 'PENDING')
             ? <Loader/>
             : null
           }
 
-          {
+          nodata = {
             //display if there is no result
             (searchStatus === 'SUCCESS' && movies.results.length < 1)
             ? <NoData/>
             : null
           }
           
-        </div>
-      </>
+        />
   );
 }
 

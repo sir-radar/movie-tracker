@@ -23,7 +23,7 @@ export function search(title, page) {
         dispatch(searchSuccess(response.data))
       })
       .catch(error => {
-        dispatch(searchFailure(error.response.data))
+        dispatch(searchFailure(error))
       });
   }
 }

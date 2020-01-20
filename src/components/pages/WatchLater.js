@@ -4,6 +4,7 @@ import PageLayout from '../layout/PageLayout';
 import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
+import Error from '../Error';
 import Pagination from '../Paginattion';
 import { getAllWatchLists, removeFromWatchList } from '../../store/actions/watchListActions';
 import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
@@ -52,6 +53,13 @@ const WatchLater = (props) => {
         //display while request is pending
         (watchlistStatus === 'PENDING')
         ? <Loader/>
+        : null
+      }
+
+      error = {
+        //display while request is pending
+        (watchlistStatus === 'ERROR')
+        ? <Error/>
         : null
       }
       

@@ -79,7 +79,7 @@ export function getAllWatchLists(page) {
         dispatch(getWatchLaterSuccess(response.data))
       })
       .catch(error => {
-        dispatch(getWatchLaterFailure(error.response.data))
+        dispatch(getWatchLaterFailure(error))
       });
   }
 }

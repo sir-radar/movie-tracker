@@ -10,6 +10,7 @@ const PageLayout = (props) => {
         <div className="row">
           {props.pageContent}
           {props.loader}
+          {props.error}
           {props.nodata}
           {props.pagination}
         </div>

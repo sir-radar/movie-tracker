@@ -5,6 +5,7 @@ import SearchBox from '../SearchBox';
 import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
+import Error from '../Error';
 import Pagination from '../Paginattion';
 import { search } from '../../store/actions/searchActions';
 import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
@@ -70,6 +71,13 @@ const SearchPage = (props) => {
             //display while request is pending
             (searchStatus === 'PENDING')
             ? <Loader/>
+            : null
+          }
+
+          error = {
+            //display while request is pending
+            (searchStatus === 'ERROR')
+            ? <Error/>
             : null
           }
 

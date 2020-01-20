@@ -4,6 +4,7 @@ import PageLayout from '../layout/PageLayout';
 import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
+import Error from '../Error';
 import Pagination from '../Paginattion';
 import { getAllFavourites, removeFromFavourite } from '../../store/actions/favouritesActions';
 import { addToWatchList, removeFromWatchList } from '../../store/actions/watchListActions';
@@ -53,6 +54,13 @@ const Favourites = (props) => {
         //display while request is pending
         (favouriteStatus === 'PENDING')
         ? <Loader/>
+        : null
+      }
+
+      error = {
+        //display while request is pending
+        (favouriteStatus === 'ERROR')
+        ? <Error/>
         : null
       }
       

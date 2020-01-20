@@ -79,7 +79,7 @@ export function getAllFavourites(page) {
         dispatch(getFavouritesSuccess(response.data))
       })
       .catch(error => {
-        dispatch(getFavouritesFailure(error.response.data))
+        dispatch(getFavouritesFailure(error))
       });
   }
 }

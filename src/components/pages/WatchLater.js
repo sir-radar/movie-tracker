@@ -4,6 +4,7 @@ import PageLayout from '../layout/PageLayout';
 import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
+import Pagination from '../Paginattion';
 import { getAllWatchLists, removeFromWatchList } from '../../store/actions/watchListActions';
 import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
 
@@ -61,6 +62,16 @@ const WatchLater = (props) => {
         : null
       }
 
+      pagination = {
+        watchlistStatus === 'SUCCESS' ? watchlists.total_results > 20 ? <Pagination 
+                                      searchMore={(page) => getAllWatchLists(page)}
+                                      page={watchlists.page} 
+                                      pages={watchlists.total_pages}
+                                      /> 
+                : ''
+                : ''
+      }
+
     />
   );
 }
@@ -77,7 +88,7 @@ const mapStateToProps = (state) => (
   
 const mapDispatchToProps = (dispatch) => (
   {
-    getAllWatchLists: () => dispatch(getAllWatchLists()),
+    getAllWatchLists: (page) => dispatch(getAllWatchLists(page)),
     removeFromWatchList: (payload) => dispatch(removeFromWatchList(payload)),
     addToFavourite: (payload) => dispatch(addToFavourite(payload)),
     removeFavourite: (payload) => dispatch(removeFromFavourite(payload)),

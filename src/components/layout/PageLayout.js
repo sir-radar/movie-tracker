@@ -11,6 +11,7 @@ const PageLayout = (props) => {
           {props.pageContent}
           {props.loader}
           {props.nodata}
+          {props.pagination}
         </div>
       </main>
     </>

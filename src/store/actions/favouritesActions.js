@@ -66,7 +66,7 @@ export function removeFromFavourite(payload) {
 }
 
 //gets all favourite movies
-export function getAllFavourites() {
+export function getAllFavourites(page) {
   return async (dispatch, getState) => {
 
     dispatch(favouriteRequest());
@@ -74,7 +74,7 @@ export function getAllFavourites() {
     await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
    
-    API.getAllFavourites(session_id)
+    API.getAllFavourites(session_id, page)
       .then(response => {
         dispatch(getFavouritesSuccess(response.data))
       })

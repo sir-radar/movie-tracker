@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 
-const SearchBox = ({onSearch}) => {
+const SearchBox = ({onSearch, updateSerachQuery}) => {
   const [search, setSearch] = useState('');
   const [error, setError] = useState('');
 
@@ -9,6 +9,7 @@ const SearchBox = ({onSearch}) => {
     const error = validate(search)
     setError(error)
     if (error.length > 0) return;
+    updateSerachQuery(search)
     onSearch(search);
   }
 

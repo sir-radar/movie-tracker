@@ -1,15 +1,17 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { connect } from 'react-redux';
 import PageLayout from '../layout/PageLayout';
 import SearchBox from '../SearchBox';
 import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
+import Pagination from '../Paginattion';
 import { search } from '../../store/actions/searchActions';
 import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
 import { addToWatchList, removeFromWatchList } from '../../store/actions/watchListActions';
 
 const SearchPage = (props) => {
+
   const { searchStatus, 
           movies, 
           addToFavourite, 
@@ -21,6 +23,17 @@ const SearchPage = (props) => {
           watchlistIDs 
         } = props;
 
+  const [searchQuery, setSearchQuery] = useState('')
+  
+  //gets searchquery for pagination
+  const updateSerachQuery = (value) => {
+    setSearchQuery(value)
+  }
+
+  const loadMore = (page) =>{
+    search(searchQuery, page)
+  }
+
   return (
         
         <PageLayout
@@ -30,6 +43,7 @@ const SearchPage = (props) => {
           searchbox = {
             <SearchBox
               onSearch={ (title) => search(title) }
+              updateSerachQuery={(query) => updateSerachQuery(query)}
             />
           }
 
@@ -65,6 +79,15 @@ const SearchPage = (props) => {
             ? <NoData/>
             : null
           }
+
+          pagination = {
+            movies.total_results > 20 ? <Pagination 
+                                          searchMore={ (page) => loadMore(page) }
+                                          page={movies.page} 
+                                          pages={movies.total_pages}
+                                          /> 
+                    : ''
+          }
           
         />
   );
@@ -82,7 +105,7 @@ const mapStateToProps = (state) => (
   
 const mapDispatchToProps = (dispatch) => (
   {
-    search: (title) => dispatch(search(title)),
+    search: (title, page) => dispatch(search(title, page)),
     addToFavourite: (payload) => dispatch(addToFavourite(payload)),
     removeFavourite: (payload) => dispatch(removeFromFavourite(payload)),
     addToWatchList: (payload) => dispatch(addToWatchList(payload)),

@@ -13,12 +13,12 @@ export const searchFailure = (error) => ({
 });
 
 //Search API calls
-export function search(title) {
+export function search(title, page) {
   return (dispatch) => {
 
     dispatch(searchRequest());
 
-    API.search(title)
+    API.search(title, page)
       .then(response => {
         dispatch(searchSuccess(response.data))
       })

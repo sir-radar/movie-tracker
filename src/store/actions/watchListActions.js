@@ -65,7 +65,7 @@ export function removeFromWatchList(payload) {
 }
 
 //gets all watchlists
-export function getAllWatchLists() {
+export function getAllWatchLists(page) {
   return async(dispatch, getState) => {
 
     dispatch(watchLaterRequest());
@@ -74,7 +74,7 @@ export function getAllWatchLists() {
     await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
     
-    API.getAllWatchlist(session_id)
+    API.getAllWatchlist(session_id, page)
       .then(response => {
         dispatch(getWatchLaterSuccess(response.data))
       })

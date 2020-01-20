@@ -53,7 +53,7 @@ const MovieCard = (props) => {
   }
 
   return (
-    <div className="card card-height p-0 col-12 col-md-5 my-2 mx-4">
+    <div className="card card-height p-0 col-12 col-md-5 my-2 mx-md-4">
       <img src={image ? `https://image.tmdb.org/t/p/w500/${image}` : 'no-image.png'} className="card-img-top image-size" alt="..."/>
       <div className="d-flex flex-column justify-content-end card-body">
         <h5 className="card-title">{title}</h5>

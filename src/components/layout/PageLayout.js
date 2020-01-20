@@ -5,9 +5,9 @@ const PageLayout = (props) => {
   return (
     <>
       { props.showNav?<Nav/> : null}
-      <main className="mt-4 p-3 col-8 offset-2">
+      <main className="mt-4 p-3 col-10 col-md-8 offset-1 offset-md-2">
           {props.searchbox}
-        <div className="row px-5">
+        <div className="row px-md-5">
           {props.pageContent}
           {props.loader}
           {props.nodata}

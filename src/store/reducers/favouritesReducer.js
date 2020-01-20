@@ -12,9 +12,13 @@ export default (state = initialState, action) => {
       return {...state, favouriteMoviesID:[...state.favouriteMoviesID, action.favorite]}
     case 'REMOVE_FAVOURITE_SUCCESS':
       const newFavouriteMoviesId = state.favouriteMoviesID.filter( val => val !== action.favorite );
-      const newFavouriteMovies = state.favouriteMovies.results.filter( val => val.id !== action.favorite );
       localStorage.setItem("favourites", JSON.stringify(newFavouriteMoviesId));
-      return {...state, favouriteMoviesID: [...newFavouriteMoviesId], favouriteMovies: {...state.favouriteMovies, results:[...newFavouriteMovies]}}
+      //remove favourite from state if it exist
+      if(state.favouriteMovies){
+        const newFavouriteMovies = state.favouriteMovies.results.filter( val => val.id !== action.favorite );
+        return {...state, favouriteMoviesID: [...newFavouriteMoviesId], favouriteMovies: {...state.favouriteMovies, results:[...newFavouriteMovies]}}
+      }
+      return {...state, favouriteMoviesID: [...newFavouriteMoviesId]}
     case 'GET_FAVOURITES_SUCCESS':
       return {...state, favouriteMovies: action.favorites}
     default:

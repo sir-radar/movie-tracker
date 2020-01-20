@@ -7,9 +7,21 @@ import NoData from '../NoData';
 import { search } from '../../store/actions/searchActions';
 import { getSessionID } from '../../store/actions/authActions';
 import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
+import { addToWatchList, removeFromWatchList } from '../../store/actions/watchListActions';
 
 const SearchPage = (props) => {
-  const { createSession, session_id, searchStatus, movies, addToFavourite, removeFavourite, favouriteIDs, search } = props;
+  const { createSession,
+          session_id, 
+          searchStatus, 
+          movies, 
+          addToFavourite, 
+          removeFavourite, 
+          favouriteIDs, 
+          search,
+          removeFromWatchList,
+          addToWatchList,
+          watchlistIDs 
+        } = props;
 
   //create session_id if it doesn't exist
   useEffect(() => {
@@ -37,6 +49,9 @@ const SearchPage = (props) => {
                 addToFavourite={addToFavourite}
                 removeFavourite={removeFavourite}
                 favouriteIDs={favouriteIDs}
+                removeFromWatchList={removeFromWatchList}
+                addToWatchList={addToWatchList}
+                watchlistIDs={watchlistIDs}
               />) 
             
             : null
@@ -68,6 +83,7 @@ const mapStateToProps = (state) => (
     movies: state.search,
     session_id: state.auth.session_id,
     favouriteIDs: state.favourites.favouriteMoviesID,
+    watchlistIDs: state.watchlists.watchListsID,
   }
 );
   
@@ -77,6 +93,8 @@ const mapDispatchToProps = (dispatch) => (
     createSession: () => dispatch(getSessionID()),
     addToFavourite: (payload) => dispatch(addToFavourite(payload)),
     removeFavourite: (payload) => dispatch(removeFromFavourite(payload)),
+    addToWatchList: (payload) => dispatch(addToWatchList(payload)),
+    removeFromWatchList: (payload) => dispatch(removeFromWatchList(payload)),
   }
 )
 

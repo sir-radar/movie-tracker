@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import NoData from '../NoData';
 import { getAllFavourites, removeFromFavourite } from '../../store/actions/favouritesActions';
 
-const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouriteIDs, favouriteStatus}) => {
+const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouriteIDs, favouriteStatus, watchlistIDs}) => {
   //request for all favourites
   useEffect(() => {
     getAllFavourites()
@@ -21,9 +21,9 @@ const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouri
             title={result.title}
             image={result.poster_path}
             overview={result.overview}
-            addToFavorite={12}
             removeFavourite={removeFavourite}
             favouriteIDs={favouriteIDs}
+            watchlistIDs={watchlistIDs}
           />) 
         
         : null
@@ -51,10 +51,11 @@ const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouri
 
 const mapStateToProps = (state) => (
   {
-    favouriteStatus: state.status.favourites,
+    favouriteStatus: state.status.favourite,
     favouriteError: state.status.favouriteError,
     favouriteMovies: state.favourites.favouriteMovies,
     favouriteIDs: state.favourites.favouriteMoviesID,
+    watchlistIDs: state.watchlists.watchListsID,
   }
 );
   

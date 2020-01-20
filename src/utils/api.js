@@ -1,9 +1,12 @@
 import axios from 'axios';
+
+//get environmental viriables
 const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const ACCESS_TOKEN = process.env.REACT_APP_ACCESS_TOKEN;
 const ACCOUNT_ID = process.env.REACT_APP_ACCESS_ACCOUNT_ID;
 
+//set urls
 const SEARCH_URL = (query) => `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`;
 const FAVORITE_URL = (session_id) =>`${BASE_URL}account/${ACCOUNT_ID}/favorite?api_key=${API_KEY}&session_id=${session_id}`;
 const FAVORITES_URL = (session_id ) => `${BASE_URL}account/${ACCOUNT_ID}/favorite/movies?api_key=${API_KEY}&session_id=${session_id}`;

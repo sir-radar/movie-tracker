@@ -5,13 +5,15 @@ import search from './reducers/searchReducer';
 import favourites from './reducers/favouritesReducer';
 import status from './reducers/statusReducer';
 import auth from './reducers/authReducer';
+import watchlists from './reducers/watchListReducer';
 
 export default createStore(
   combineReducers({
     search,
     favourites,
     status,
-    auth
+    auth,
+    watchlists
   }),
   {},
   applyMiddleware(thunk)

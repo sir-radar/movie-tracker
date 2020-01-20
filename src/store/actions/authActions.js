@@ -10,15 +10,15 @@ export const createSessionFailure = (error) => ({
 
 //Session ID auth API call
 export function getSessionID() {
-
-  return (dispatch) => {
-
-    API.createSession()
-      .then(response => {
+  return async (dispatch, getState) => {
+    let session_id = getState().auth.session_id;
+    if(!session_id){
+      try{
+        const response = await API.createSession();
         dispatch(createSession(response.data.session_id))
-      })
-      .catch(error => {
+      }catch(error){
         dispatch(createSessionFailure(error.response.data))
-      });
+      }
+    }
   }
 }

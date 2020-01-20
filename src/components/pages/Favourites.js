@@ -26,7 +26,7 @@ const Favourites = (props) => {
 
   return (
     <PageLayout
-    
+
       showNav = {true}
 
       pageContent = {

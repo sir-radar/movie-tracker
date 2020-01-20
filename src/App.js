@@ -4,7 +4,6 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import './App.css';
 import Header from './components/Header';
 import SearchPage from './components/pages/SearchPage';
 import Favourites from './components/pages/Favourites';
@@ -13,6 +12,7 @@ import Page404 from './components/pages/404Page';
 
 
 function App() {
+ 
   return (
     <div className="App container-fluid">
       
@@ -28,7 +28,5 @@ function App() {
 
     </div>
   )
-  
 }
-
 export default App;

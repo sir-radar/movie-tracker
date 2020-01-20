@@ -7,6 +7,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_SESSION_SUCCESS':
+      console.log('happened')
       localStorage.setItem("session_id", action.session_id)
       return {...state, session_id: action.session_id}
     case 'CREATE_SESSION_FAILURE':

@@ -1,4 +1,5 @@
 import API from '../../utils/api';
+import {getSessionID} from './authActions'
 
 export const favouriteRequest = () => ({
   type: 'FAVORITE_REQUEST'
@@ -32,10 +33,11 @@ export const getFavouritesFailure = (error) => ({
 
 //adds movie to favourites list
 export function addToFavourite(payload) {
-  return (dispatch, getState) => {
-
+  return async(dispatch, getState) => {
+    //checks if session_id exists if not, gets it
+    await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
-    
+   
     API.addToFavourite(session_id, payload)
       .then( _ => {
         dispatch(saveFavouriteSuccess(payload.media_id))
@@ -48,8 +50,9 @@ export function addToFavourite(payload) {
 
 //removes movie from favourites list
 export function removeFromFavourite(payload) {
-  return (dispatch, getState) => {
-
+  return async(dispatch, getState) => {
+    //checks if session_id exists if not, gets it
+    await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
     
     API.addToFavourite(session_id, payload)
@@ -64,12 +67,13 @@ export function removeFromFavourite(payload) {
 
 //gets all favourite movies
 export function getAllFavourites() {
-  return (dispatch, getState) => {
-
-    const session_id = getState().auth.session_id;
+  return async (dispatch, getState) => {
 
     dispatch(favouriteRequest());
-    
+    //checks if session_id exists if not, gets it
+    await dispatch(getSessionID())
+    const session_id = getState().auth.session_id;
+   
     API.getAllFavourites(session_id)
       .then(response => {
         dispatch(getFavouritesSuccess(response.data))

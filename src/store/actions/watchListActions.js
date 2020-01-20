@@ -1,4 +1,5 @@
 import API from '../../utils/api';
+import {getSessionID} from './authActions'
 
 export const watchLaterRequest = () => ({
   type: 'WATCHLIST_REQUEST'
@@ -48,8 +49,9 @@ export function addToWatchList(payload) {
 
 //removes movie from watchlist
 export function removeFromWatchList(payload) {
-  return (dispatch, getState) => {
-
+  return async(dispatch, getState) => {
+    //checks if session_id exists if not, gets it
+    await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
     
     API.addToWatchlist(session_id, payload)
@@ -64,11 +66,13 @@ export function removeFromWatchList(payload) {
 
 //gets all watchlists
 export function getAllWatchLists() {
-  return (dispatch, getState) => {
-
-    const session_id = getState().auth.session_id;
+  return async(dispatch, getState) => {
 
     dispatch(watchLaterRequest());
+
+    //checks if session_id exists if not, gets it
+    await dispatch(getSessionID())
+    const session_id = getState().auth.session_id;
     
     API.getAllWatchlist(session_id)
       .then(response => {

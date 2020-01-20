@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
       return {...state, watchListsID:[...state.watchListsID, action.watchList]}
     case 'REMOVE_WATCHLIST_SUCCESS':
       const newWatchListsId = state.watchListsID.filter( val => val !== action.watchList);
-      localStorage.setItem("favourites", JSON.stringify(newWatchListsId));
+      localStorage.setItem("watchList", JSON.stringify(newWatchListsId));
       //remove watchlist from state if it exist
       if(state.watchLists){
         const newwatchLists = state.watchLists.results.filter( val => val.id !== action.watchList );

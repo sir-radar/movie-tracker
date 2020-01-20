@@ -62,7 +62,7 @@ const MovieCard = (props) => {
         </div>
         <div className="align-self-center actions">
           <a href="#" className="btn btn-primary">Go somewhere</a>
-          <div className="d-flex">
+          <div className="d-flex mt-2">
             {
               favouriteIDs.includes(id) ? <button onClick={removeFromFavouritesHandler} className="btn mr-2"><i className="fa fa-star text-favourite"></i></button>
                 : <button onClick={makeFavouriteHandler} className="btn mr-2"><i className="fa fa-star"></i></button>

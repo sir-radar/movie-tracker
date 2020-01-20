@@ -14,6 +14,7 @@ const WatchLater = (props) => {
           watchlistIDs, 
           watchlistStatus,
           removeFavourite,
+          addToFavourite,
           favouriteIDs
         } = props
 

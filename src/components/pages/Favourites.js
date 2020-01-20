@@ -4,8 +4,20 @@ import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
 import { getAllFavourites, removeFromFavourite } from '../../store/actions/favouritesActions';
+import { addToWatchList, removeFromWatchList } from '../../store/actions/watchListActions';
 
-const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouriteIDs, favouriteStatus, watchlistIDs}) => {
+const Favourites = (props) => {
+  const {
+          favouriteMovies, 
+          removeFavourite, 
+          getAllFavourites, 
+          favouriteIDs, 
+          favouriteStatus, 
+          watchlistIDs,  
+          removeFromWatchList,
+          addToWatchList
+        } = props;
+
   //request for all favourites
   useEffect(() => {
     getAllFavourites()
@@ -24,6 +36,8 @@ const Favourites = ({favouriteMovies, removeFavourite, getAllFavourites, favouri
             removeFavourite={removeFavourite}
             favouriteIDs={favouriteIDs}
             watchlistIDs={watchlistIDs}
+            removeFromWatchList={removeFromWatchList}
+            addToWatchList={addToWatchList}
           />) 
         
         : null
@@ -62,7 +76,9 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
   {
     getAllFavourites: () => dispatch(getAllFavourites()),
-    removeFavourite: (payload) => dispatch(removeFromFavourite(payload))
+    removeFavourite: (payload) => dispatch(removeFromFavourite(payload)),
+    addToWatchList: (payload) => dispatch(addToWatchList(payload)),
+    removeFromWatchList: (payload) => dispatch(removeFromWatchList(payload))
   }
 )
 

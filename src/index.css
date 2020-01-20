@@ -60,3 +60,16 @@ a:hover{
 .rm-btn-bg{
   background-color: #EC6159;
 }
+
+.pagination li.option{
+  cursor: pointer;
+}
+
+.pagination li span{
+  color: #000;
+}
+
+.page-item.active .page-link{
+  background-color: #4B55A1 !important;
+  border-color: #4B55A1 !important;
+}

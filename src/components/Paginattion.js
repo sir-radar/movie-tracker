@@ -7,31 +7,31 @@ const Paginattion = ({searchMore, page, pages}) => {
   }
 
   const pageLinks = [];
-
+  
   for(let i = 1; i < pages + 1; i++){
     let active = page === i ? 'active' : '';
 
-    pageLinks.push(<li className={`page-item ${active}`} key={i} onClick={() => nextPage(i)}><a className="page-link">{i}</a></li>)
+    pageLinks.push(<li className={`page-item option ${active}`} key={i} onClick={() => nextPage(i)}><span className="page-link">{i}</span></li>)
   }
 
   return (
-    <nav className="w-100">
-      <ul className="pagination">
+    <nav className="w-100 pr-3 mt-3">
+      <ul className="pagination float-right">
         {
-          page > 1 ? <li className="page-item" onClick={() => nextPage(--page)}>
-                        <a className="page-link">Previous</a>
+          page > 1 ? <li className="page-item option" onClick={() => nextPage(--page)}>
+                        <span className="page-link">Previous</span>
                      </li>
                 : <li className="page-item disabled">
-                    <a className="page-link">Previous</a>
+                    <span className="page-link">Previous</span>
                   </li>
         }
         { pageLinks }
         {
-          page < pages + 1 ? <li className="page-item" onClick={() => nextPage(++page)}>
-                                <a className="page-link">Next</a>
+          page < pages ? <li className="page-item option" onClick={() => nextPage(++page)}>
+                                <span className="page-link">Next</span>
                              </li>
                   : <li className="page-item disabled">
-                      <a className="page-link">Next</a>
+                      <span className="page-link">Next</span>
                     </li>
         }
         

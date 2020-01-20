@@ -81,11 +81,12 @@ const SearchPage = (props) => {
           }
 
           pagination = {
-            movies.total_results > 20 ? <Pagination 
+            (searchStatus === 'SUCCESS') ? movies.total_results > 20 ? <Pagination 
                                           searchMore={ (page) => loadMore(page) }
                                           page={movies.page} 
                                           pages={movies.total_pages}
                                           /> 
+                    : ''
                     : ''
           }
           

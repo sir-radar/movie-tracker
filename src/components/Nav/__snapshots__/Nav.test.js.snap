@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<nav
+  className="d-flex justify-content-center"
+>
+  <a
+    className="p-3 primary-text-color active"
+    data-testid="search"
+    href="/"
+    onClick={[Function]}
+  >
+    Search
+  </a>
+  <a
+    className="p-3 primary-text-color"
+    data-testid="favourite"
+    href="/favourites"
+    onClick={[Function]}
+  >
+    Favorites
+  </a>
+  <a
+    className="p-3 primary-text-color"
+    data-testid="watchlater"
+    href="/watchlist"
+    onClick={[Function]}
+  >
+    WatchLater
+  </a>
+</nav>
+`;

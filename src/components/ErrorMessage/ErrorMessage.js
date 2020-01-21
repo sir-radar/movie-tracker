@@ -9,7 +9,7 @@ const ErrorMessage = ({resetStatus}) => {
   },[resetStatus]);
 
   return (
-    <div className="w-25 bg-danger text-white text-center message">
+    <div data-testid="error-message" className="w-25 bg-danger text-white text-center message">
       Something went wrong
     </div>
   )

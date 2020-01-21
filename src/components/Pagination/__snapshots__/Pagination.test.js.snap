@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<nav
+  className="w-100 pr-3 mt-3"
+>
+  <ul
+    className="pagination float-right"
+  >
+    <li
+      className="page-item disabled"
+      data-testid="inactive-prev"
+    >
+      <span
+        className="page-link"
+      >
+        Previous
+      </span>
+    </li>
+    <li
+      className="page-item"
+      data-testid="pagination-detail"
+    >
+      <span
+        className="page-link"
+      >
+        Page 1 of 5
+      </span>
+    </li>
+    <li
+      className="page-item option"
+      data-testid="active-next"
+      onClick={[Function]}
+    >
+      <span
+        className="page-link"
+      >
+        Next
+      </span>
+    </li>
+  </ul>
+</nav>
+`;

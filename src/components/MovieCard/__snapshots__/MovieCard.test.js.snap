@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="col-md-3 mt-2"
+>
+  <div
+    className="card card-height p-0 col-12"
+  >
+    <img
+      alt="..."
+      className="card-img-top image-size mb-2"
+      src="no-image.png"
+    />
+    <div
+      className="d-flex flex-column justify-content-between card-body p-2"
+    >
+      <h5
+        className="card-title"
+        data-testid="movie-title"
+      >
+        Movie title
+      </h5>
+      <div>
+        <p
+          className="card-text"
+          data-testid="movie-overview"
+        >
+          Movie overview
+        </p>
+      </div>
+      <div
+        className="align-self-center actions text-center"
+      >
+        <a
+          data-testid="movie-details-link"
+          href="/movie/1"
+          onClick={[Function]}
+        >
+          See Details
+        </a>
+        <div
+          className="d-flex mt-2"
+        >
+          <button
+            className="btn mr-2"
+            data-testid="active-favourite"
+            onClick={[Function]}
+          >
+            <i
+              className="fa fa-star text-favourite"
+            />
+          </button>
+          <button
+            className="btn rm-btn-bg"
+            data-testid="active-watchlist"
+            onClick={[Function]}
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

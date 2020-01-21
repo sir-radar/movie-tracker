@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<section
+  className="loading mt-5 mx-auto text-center"
+>
+  <i
+    className="fa fa-times fa-5x text-danger"
+  />
+  <h1
+    data-testid="error-header"
+  >
+    Opps
+  </h1>
+  <h3
+    data-testid="error-body"
+  >
+    Something went wrong. Please check your internet and try again.
+  </h3>
+</section>
+`;

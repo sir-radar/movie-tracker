@@ -1,15 +1,15 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
-import PageLayout from '../layout/PageLayout';
-import MovieCard from '../MovieCard';
-import Loader from '../Loader';
-import NoData from '../NoData';
-import Error from '../Error';
-import ErrorMessage from '../ErrorMessage';
-import Pagination from '../Pagination';
-import { getAllWatchLists, removeFromWatchList } from '../../store/actions/watchListActions';
-import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
-import { resetStatus } from '../../store/actions/statusActions';
+import PageLayout from '../../layout/PageLayout';
+import MovieCard from '../../MovieCard/MovieCard';
+import Loader from '../../Loader/Loader';
+import NoData from '../../NoData/NoData';
+import Error from '../../Error/Error';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import Pagination from '../../Pagination/Pagination';
+import { getAllWatchLists, removeFromWatchList } from '../../../store/actions/watchListActions';
+import { addToFavourite, removeFromFavourite } from '../../../store/actions/favouritesActions';
+import { resetStatus } from '../../../store/actions/statusActions';
 
 const WatchLater = (props) => {
 

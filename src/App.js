@@ -4,11 +4,12 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import Header from './components/Header';
-import SearchPage from './components/pages/SearchPage';
-import Favourites from './components/pages/Favourites';
-import WatchLater from './components/pages/WatchLater';
+import Header from './components/Header/Header';
+import SearchPage from './components/pages/SearchPage/SearchPage';
+import Favourites from './components/pages/Favourites/Favourites';
+import WatchLater from './components/pages/watchLater/WatchLater';
 import Page404 from './components/pages/404Page';
+import MovieDetails from './components/pages/MovieDetails/MovieDetails';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Route exact path="/" component={SearchPage} />
               <Route path="/favourites" component={Favourites} />
               <Route path="/watchlist" component={WatchLater} />
+              <Route path="/movie/:id" component={MovieDetails} />
               <Route component={Page404} />
           </Switch>
       </Router>

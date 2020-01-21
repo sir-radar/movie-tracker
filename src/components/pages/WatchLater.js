@@ -5,9 +5,11 @@ import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
 import Error from '../Error';
-import Pagination from '../Paginattion';
+import ErrorMessage from '../ErrorMessage';
+import Pagination from '../Pagination';
 import { getAllWatchLists, removeFromWatchList } from '../../store/actions/watchListActions';
 import { addToFavourite, removeFromFavourite } from '../../store/actions/favouritesActions';
+import { resetStatus } from '../../store/actions/statusActions';
 
 const WatchLater = (props) => {
 
@@ -18,7 +20,10 @@ const WatchLater = (props) => {
           watchlistStatus,
           removeFavourite,
           addToFavourite,
-          favouriteIDs
+          favouriteIDs,
+          watchlistAction,
+          favouriteAction,
+          resetStatus
         } = props
 
    //request for all watchlists
@@ -62,6 +67,13 @@ const WatchLater = (props) => {
         ? <Error/>
         : null
       }
+
+      errorMessage = {
+        //display when an error occurs in favouriting or adding movie to watchlist
+        (watchlistAction === 'ERROR' || favouriteAction === 'ERROR' )
+        ? <ErrorMessage resetStatus={resetStatus}/>
+        : ''
+      }
       
       nodata = {
         //display if there is no favourite
@@ -92,6 +104,8 @@ const mapStateToProps = (state) => (
     watchlists: state.watchlists.watchLists,
     watchlistIDs: state.watchlists.watchListsID,
     favouriteIDs: state.favourites.favouriteMoviesID,
+    watchlistAction: state.status.watchlistAction,
+    favouriteAction: state.status.favouriteAction
   }
 );
   
@@ -101,6 +115,7 @@ const mapDispatchToProps = (dispatch) => (
     removeFromWatchList: (payload) => dispatch(removeFromWatchList(payload)),
     addToFavourite: (payload) => dispatch(addToFavourite(payload)),
     removeFavourite: (payload) => dispatch(removeFromFavourite(payload)),
+    resetStatus: () => dispatch(resetStatus()),
   }
 )
 

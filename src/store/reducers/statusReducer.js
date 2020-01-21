@@ -28,6 +28,14 @@ export default (state = initialState, action) => {
       favourite: 'ERROR',
       favouriteError: action.error
     },
+    'SAVE_FAVOURITE_FAILURE': {
+      favouriteAction: 'ERROR',
+      favouriteError: action.error
+    },
+    'REMOVE_FAVOURITE_FAILURE': {
+      favouriteAction: 'ERROR',
+      favouriteError: action.error
+    },
     // watchlist request statuses
     'WATCHLIST_REQUEST': {
       watchlist: 'PENDING',
@@ -40,6 +48,20 @@ export default (state = initialState, action) => {
     'GET_WATCHLIST_FAILURE': {
       watchlist: 'ERROR',
       watchlistError: action.error
+    },
+    'SAVE_WATCHLIST_FAILURE': {
+      watchlistAction: 'ERROR',
+      watchlistError: action.error
+    },
+    'REMOVE_WATCHLIST_FAILURE': {
+      watchlistAction: 'ERROR',
+      watchlistError: action.error
+    },
+    'RESET_ERROR_STATUS': {
+      watchlistAction: '',
+      favouriteAction:'',
+      watchlistError: '',
+      favouriteError:''
     },
     
   }

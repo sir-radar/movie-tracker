@@ -43,7 +43,7 @@ export function addToFavourite(payload) {
         dispatch(saveFavouriteSuccess(payload.media_id))
       })
       .catch(error => {
-        dispatch(saveFavouriteFailure(error.response.data))
+        dispatch(saveFavouriteFailure(error.response))
       });
   }
 }
@@ -60,7 +60,7 @@ export function removeFromFavourite(payload) {
         dispatch(removeFavouriteSuccess(payload.media_id))
       })
       .catch(error => {
-        dispatch(removeFavouriteFailure(error.response.data))
+        dispatch(removeFavouriteFailure(error.response))
       });
   }
 }

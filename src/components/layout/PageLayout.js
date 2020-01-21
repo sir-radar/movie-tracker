@@ -11,8 +11,10 @@ const PageLayout = (props) => {
           {props.pageContent}
           {props.loader}
           {props.error}
+          {/* {props.errorMessage} */}
           {props.nodata}
           {props.pagination}
+          {props.errorMessage}
         </div>
       </main>
     </>

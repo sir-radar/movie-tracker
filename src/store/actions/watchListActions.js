@@ -17,8 +17,8 @@ export const removeWatchLaterSuccess = (watchList) => ({
   type: 'REMOVE_WATCHLIST_SUCCESS', watchList
 });
 
-export const removeWatchLaterFailure = (watchList) => ({
-  type: 'REMOVE_WATCHLIST_FAILURE', watchList
+export const removeWatchLaterFailure = (error) => ({
+  type: 'REMOVE_WATCHLIST_FAILURE', error
 });
 
 export const getWatchLaterSuccess = (watchLists) => ({
@@ -42,7 +42,7 @@ export function addToWatchList(payload) {
         dispatch(saveWatchLaterSuccess(payload.media_id))
       })
       .catch(error => {
-        dispatch(saveWatchLaterFailure(error.response.data))
+        dispatch(saveWatchLaterFailure(error.response))
       });
   }
 }
@@ -59,7 +59,7 @@ export function removeFromWatchList(payload) {
         dispatch(removeWatchLaterSuccess(payload.media_id))
       })
       .catch(error => {
-        dispatch(removeWatchLaterFailure(error.response.data))
+        dispatch(removeWatchLaterFailure(error.response))
       });
   }
 }

@@ -5,9 +5,11 @@ import MovieCard from '../MovieCard';
 import Loader from '../Loader';
 import NoData from '../NoData';
 import Error from '../Error';
-import Pagination from '../Paginattion';
+import ErrorMessage from '../ErrorMessage';
+import Pagination from '../Pagination';
 import { getAllFavourites, removeFromFavourite } from '../../store/actions/favouritesActions';
 import { addToWatchList, removeFromWatchList } from '../../store/actions/watchListActions';
+import { resetStatus } from '../../store/actions/statusActions';
 
 const Favourites = (props) => {
   const {
@@ -18,7 +20,10 @@ const Favourites = (props) => {
           favouriteStatus, 
           watchlistIDs,  
           removeFromWatchList,
-          addToWatchList
+          addToWatchList,
+          watchlistAction,
+          favouriteAction,
+          resetStatus
         } = props;
 
   //request for all favourites
@@ -63,6 +68,13 @@ const Favourites = (props) => {
         ? <Error/>
         : null
       }
+
+      errorMessage = {
+        //display when an error occurs in favouriting or adding movie to watchlist
+        (watchlistAction === 'ERROR' || favouriteAction === 'ERROR' )
+        ? <ErrorMessage resetStatus={resetStatus}/>
+        : ''
+      }
       
       nodata = {
         //display if there is no favourite
@@ -93,6 +105,8 @@ const mapStateToProps = (state) => (
     favouriteMovies: state.favourites.favouriteMovies,
     favouriteIDs: state.favourites.favouriteMoviesID,
     watchlistIDs: state.watchlists.watchListsID,
+    watchlistAction: state.status.watchlistAction,
+    favouriteAction: state.status.favouriteAction
   }
 );
   
@@ -101,7 +115,8 @@ const mapDispatchToProps = (dispatch) => (
     getAllFavourites: (page) => dispatch(getAllFavourites(page)),
     removeFavourite: (payload) => dispatch(removeFromFavourite(payload)),
     addToWatchList: (payload) => dispatch(addToWatchList(payload)),
-    removeFromWatchList: (payload) => dispatch(removeFromWatchList(payload))
+    removeFromWatchList: (payload) => dispatch(removeFromWatchList(payload)),
+    resetStatus: () => dispatch(resetStatus())
   }
 )
 

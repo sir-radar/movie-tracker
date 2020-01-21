@@ -69,7 +69,3 @@ a:hover{
   color: #000;
 }
 
-.page-item.active .page-link{
-  background-color: #4B55A1 !important;
-  border-color: #4B55A1 !important;
-}

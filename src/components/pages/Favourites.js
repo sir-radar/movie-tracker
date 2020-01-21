@@ -58,7 +58,7 @@ const Favourites = (props) => {
       }
 
       error = {
-        //display while request is pending
+        //display when an error occurs
         (favouriteStatus === 'ERROR')
         ? <Error/>
         : null
@@ -72,6 +72,7 @@ const Favourites = (props) => {
       }
 
       pagination = {
+        //pagination
         favouriteStatus === 'SUCCESS' ? favouriteMovies.total_results > 20 ? <Pagination 
                                       searchMore={(page) => getAllFavourites(page)}
                                       page={favouriteMovies.page} 

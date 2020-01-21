@@ -57,7 +57,7 @@ const WatchLater = (props) => {
       }
 
       error = {
-        //display while request is pending
+        //display when an error occurs
         (watchlistStatus === 'ERROR')
         ? <Error/>
         : null
@@ -71,6 +71,7 @@ const WatchLater = (props) => {
       }
 
       pagination = {
+        //pagination
         watchlistStatus === 'SUCCESS' ? watchlists.total_results > 20 ? <Pagination 
                                       searchMore={(page) => getAllWatchLists(page)}
                                       page={watchlists.page} 

@@ -75,7 +75,7 @@ const SearchPage = (props) => {
           }
 
           error = {
-            //display while request is pending
+            //display when an error occurs
             (searchStatus === 'ERROR')
             ? <Error/>
             : null
@@ -89,6 +89,7 @@ const SearchPage = (props) => {
           }
 
           pagination = {
+            //pagination
             (searchStatus === 'SUCCESS') ? movies.total_results > 20 ? <Pagination 
                                           searchMore={ (page) => loadMore(page) }
                                           page={movies.page} 

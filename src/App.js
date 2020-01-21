@@ -8,7 +8,7 @@ import Header from './components/Header/Header';
 import SearchPage from './components/pages/SearchPage/SearchPage';
 import Favourites from './components/pages/Favourites/Favourites';
 import WatchLater from './components/pages/watchLater/WatchLater';
-import Page404 from './components/pages/404Page';
+import Page404 from './components/pages/404Page/404Page';
 import MovieDetails from './components/pages/MovieDetails/MovieDetails';
 
 

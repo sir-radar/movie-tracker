@@ -29,15 +29,15 @@ const SearchPage = (props) => {
           resetStatus
         } = props;
 
-  const [searchQuery, setSearchQuery] = useState('')
-  console.log(watchlistAction)
+  const [searchQuery, setSearchQuery] = useState('');
+
   //gets searchquery for pagination
   const updateSerachQuery = (value) => {
-    setSearchQuery(value)
+    setSearchQuery(value);
   }
 
-  const loadMore = (page) =>{
-    search(searchQuery, page)
+  const loadMore = (page) => {
+    search(searchQuery, page);
   }
 
   return (

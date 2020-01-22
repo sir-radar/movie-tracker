@@ -58,7 +58,7 @@ const MovieCard = (props) => {
   return (
     <div data-testid="movie-card" className="col-md-3 mt-2">
       <div className="card card-height p-0 col-12">
-        <img src={image ? `https://image.tmdb.org/t/p/w500/${image}` : 'no-image.png'} className="card-img-top image-size mb-2" alt="..."/>
+        <img src={image ? `https://image.tmdb.org/t/p/w500/${image}` : '/no-image.png'} className="card-img-top image-size mb-2" alt="..."/>
         <div className="d-flex flex-column justify-content-between card-body p-2">
           <h5 data-testid="movie-title" className="card-title">{truncate(title, 30)}</h5>
           <div>

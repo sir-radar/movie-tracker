@@ -6,6 +6,7 @@ import favourites from './reducers/favouritesReducer';
 import status from './reducers/statusReducer';
 import auth from './reducers/authReducer';
 import watchlists from './reducers/watchListReducer';
+import movie from './reducers/movieReducer';
 
 export default createStore(
   combineReducers({
@@ -13,7 +14,8 @@ export default createStore(
     favourites,
     status,
     auth,
-    watchlists
+    watchlists,
+    movie
   }),
   applyMiddleware(thunk)
 )

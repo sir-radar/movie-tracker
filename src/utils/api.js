@@ -12,6 +12,7 @@ const FAVORITE_URL = (session_id) =>`${BASE_URL}account/${ACCOUNT_ID}/favorite?a
 const FAVORITES_URL = (session_id, page) => `${BASE_URL}account/${ACCOUNT_ID}/favorite/movies?api_key=${API_KEY}&session_id=${session_id}&page=${page}`;
 const WATCHLIST_URL = (session_id) => `${BASE_URL}account/${ACCOUNT_ID}/watchlist?api_key=${API_KEY}&session_id=${session_id}`;
 const WATCHLISTS_URL = (session_id, page) => `${BASE_URL}account/${ACCOUNT_ID}/watchlist/movies?api_key=${API_KEY}&session_id=${session_id}&page=${page}`;
+const MOVIE_DETAILS = (movieId) => `${BASE_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos`;
 const SESSION_URL = `${BASE_URL}authentication/session/convert/4?api_key=${API_KEY}`;
 
 const API = {
@@ -38,6 +39,10 @@ const API = {
 
   createSession() {
     return axios.post(SESSION_URL,{access_token:ACCESS_TOKEN});
+  },
+
+  getMovieDetails(movieId) {
+    return axios.get(MOVIE_DETAILS(movieId));
   }
 }
 

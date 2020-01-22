@@ -3,7 +3,8 @@ const initialState = {
   favourite:'',
   favouriteAction:'',
   watchlist:'',
-  watchlistAction:''
+  watchlistAction:'',
+  movieDetailsAction:''
 }
 
 export default (state = initialState, action) => {
@@ -68,6 +69,16 @@ export default (state = initialState, action) => {
       favouriteAction:'',
       watchlistError: '',
       favouriteError:''
+    },
+    //Movie details request status
+    'MOVIE_REQUEST': {
+      movieDetailsAction: 'PENDING'
+    },
+    'GET_MOVIE_DETAILS_SUCCESS': {
+      movieDetailsAction: 'SUCCESS'
+    },
+    'GET_MOVIE_DETAILS_FAILURE': {
+      movieDetailsAction: 'ERROR'
     },
     
   }

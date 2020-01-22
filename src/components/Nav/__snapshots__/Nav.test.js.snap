@@ -3,6 +3,7 @@
 exports[`matches snapshot 1`] = `
 <nav
   className="d-flex justify-content-center"
+  data-testid="nav"
 >
   <a
     className="p-3 primary-text-color active"

@@ -1,4 +1,10 @@
-const initialState = {}
+const initialState = {
+  search: '',
+  favourite:'',
+  favouriteAction:'',
+  watchlist:'',
+  watchlistAction:''
+}
 
 export default (state = initialState, action) => {
   const actionHandlers = {

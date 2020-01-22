@@ -14,7 +14,7 @@ import { addToWatchList, removeFromWatchList } from '../../../store/actions/watc
 import { resetStatus } from '../../../store/actions/statusActions';
 
 const SearchPage = (props) => {
-
+  // console.log(props)
   const { searchStatus, 
           movies, 
           addToFavourite, 
@@ -24,8 +24,8 @@ const SearchPage = (props) => {
           removeFromWatchList,
           addToWatchList,
           watchlistIDs,
-          watchlistAction,
-          favouriteAction,
+          watchlistActionStatus,
+          favouriteActionStatus,
           resetStatus
         } = props;
 
@@ -36,6 +36,7 @@ const SearchPage = (props) => {
     setSearchQuery(value);
   }
 
+  //makes request for nex or previos page data
   const loadMore = (page) => {
     search(searchQuery, page);
   }
@@ -88,7 +89,7 @@ const SearchPage = (props) => {
 
           errorMessage = {
             //display when an error occurs in favouriting or adding movie to watchlist
-            (watchlistAction === 'ERROR' || favouriteAction === 'ERROR' )
+            (watchlistActionStatus === 'ERROR' || favouriteActionStatus === 'ERROR' )
             ? <ErrorMessage resetStatus={resetStatus}/>
             : ''
           }
@@ -118,8 +119,8 @@ const SearchPage = (props) => {
 const mapStateToProps = (state) => (
   {
     searchStatus: state.status.search,
-    watchlistAction: state.status.watchlistAction,
-    favouriteAction: state.status.favouriteAction,
+    watchlistActionStatus: state.status.watchlistAction,
+    favouriteActionStatus: state.status.favouriteAction,
     movies: state.search,
     favouriteIDs: state.favourites.favouriteMoviesID,
     watchlistIDs: state.watchlists.watchListsID,

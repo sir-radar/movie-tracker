@@ -6,7 +6,7 @@ const PageLayout = (props) => {
     <>
       { props.showNav?<Nav/> : null}
       <main className="mt-4 p-3 col-10 col-md-10 offset-1 offset-md-1">
-          {props.searchbox}
+        {props.searchbox}
         <div className="row">
           {props.pageContent}
           {props.loader}

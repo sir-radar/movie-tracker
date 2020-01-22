@@ -1,7 +1,8 @@
 //get saved watchlist movies id from localstorage
 const watchListsID = JSON.parse(localStorage.getItem('watchList'));
 const initialState = {
-  watchListsID: watchListsID || []
+  watchListsID: watchListsID || [],
+  watchLists:{}
 }
 
 export default (state = initialState, action) => {

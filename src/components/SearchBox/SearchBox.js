@@ -20,16 +20,16 @@ const SearchBox = ({onSearch, updateSerachQuery}) => {
   }
   
   return (
-    <div className="row justify-content-center">
+    <div data-testid="search-box" className="row justify-content-center">
       <div className="col-md-10">
-        <form onSubmit={handleSubmit}>
+        <form data-testid="search-form" onSubmit={handleSubmit}>
           <div className="input-group mb-3">
-            <input type="text" onChange={e => setSearch(e.target.value)} className="form-control" placeholder="Search movie title..."/>
+            <input data-testid="search-input" type="text" onChange={e => setSearch(e.target.value)} className="form-control" placeholder="Search movie title..."/>
             <div className="input-group-append">
               <button className="btn px-3 btn-background"><i className="fa fa-search text-white"></i></button>
             </div>
           </div>
-          <p className='error text-danger'>{ error }</p>
+          <p data-testid="search-error" className='error text-danger'>{ error }</p>
         </form>
       </div>
     </div>

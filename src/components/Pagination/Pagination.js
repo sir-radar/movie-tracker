@@ -7,7 +7,7 @@ const Paginattion = ({searchMore, page, pages}) => {
   }
 
   return (
-    <nav className="w-100 pr-3 mt-3">
+    <nav data-testid="pagination" className="w-100 pr-3 mt-3">
       <ul className="pagination float-right">
         {
           page > 1 ? <li data-testid="active-prev" className="page-item option" onClick={() => nextPage(--page)}>

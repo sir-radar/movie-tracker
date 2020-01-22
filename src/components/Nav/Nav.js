@@ -14,7 +14,7 @@ const Nav = () => {
   }
 
   return (
-    <nav className="d-flex justify-content-center">
+    <nav data-testid="nav" className="d-flex justify-content-center">
       <Link 
         data-testid="search"
         to='/'

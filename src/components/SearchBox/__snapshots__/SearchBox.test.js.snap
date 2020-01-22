@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="row justify-content-center"
+  data-testid="search-box"
+>
+  <div
+    className="col-md-10"
+  >
+    <form
+      data-testid="search-form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="input-group mb-3"
+      >
+        <input
+          className="form-control"
+          data-testid="search-input"
+          onChange={[Function]}
+          placeholder="Search movie title..."
+          type="text"
+        />
+        <div
+          className="input-group-append"
+        >
+          <button
+            className="btn px-3 btn-background"
+          >
+            <i
+              className="fa fa-search text-white"
+            />
+          </button>
+        </div>
+      </div>
+      <p
+        className="error text-danger"
+        data-testid="search-error"
+      >
+        
+      </p>
+    </form>
+  </div>
+</div>
+`;

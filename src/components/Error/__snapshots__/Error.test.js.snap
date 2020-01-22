@@ -3,6 +3,7 @@
 exports[`matches snapshot 1`] = `
 <section
   className="loading mt-5 mx-auto text-center"
+  data-testid="error"
 >
   <i
     className="fa fa-times fa-5x text-danger"

@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+Array [
+  <nav
+    className="d-flex justify-content-center"
+    data-testid="nav"
+  >
+    <a
+      className="p-3 primary-text-color active"
+      data-testid="search"
+      href="/"
+      onClick={[Function]}
+    >
+      Search
+    </a>
+    <a
+      className="p-3 primary-text-color"
+      data-testid="favourite"
+      href="/favourites"
+      onClick={[Function]}
+    >
+      Favorites
+    </a>
+    <a
+      className="p-3 primary-text-color"
+      data-testid="watchlater"
+      href="/watchlist"
+      onClick={[Function]}
+    >
+      WatchLater
+    </a>
+  </nav>,
+  <main
+    className="mt-4 p-3 col-10 col-md-10 offset-1 offset-md-1"
+  >
+    <div
+      className="row justify-content-center"
+      data-testid="search-box"
+    >
+      <div
+        className="col-md-10"
+      >
+        <form
+          data-testid="search-form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="input-group mb-3"
+          >
+            <input
+              className="form-control"
+              data-testid="search-input"
+              onChange={[Function]}
+              placeholder="Search movie title..."
+              type="text"
+            />
+            <div
+              className="input-group-append"
+            >
+              <button
+                className="btn px-3 btn-background"
+              >
+                <i
+                  className="fa fa-search text-white"
+                />
+              </button>
+            </div>
+          </div>
+          <p
+            className="error text-danger"
+            data-testid="search-error"
+          >
+            
+          </p>
+        </form>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      
+      
+    </div>
+  </main>,
+]
+`;

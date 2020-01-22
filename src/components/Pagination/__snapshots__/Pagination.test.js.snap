@@ -3,6 +3,7 @@
 exports[`matches snapshot 1`] = `
 <nav
   className="w-100 pr-3 mt-3"
+  data-testid="pagination"
 >
   <ul
     className="pagination float-right"

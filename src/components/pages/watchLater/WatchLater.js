@@ -21,8 +21,8 @@ const WatchLater = (props) => {
           removeFavourite,
           addToFavourite,
           favouriteIDs,
-          watchlistAction,
-          favouriteAction,
+          watchlistActionStatus,
+          favouriteActionStatus,
           resetStatus
         } = props
 
@@ -70,7 +70,7 @@ const WatchLater = (props) => {
 
       errorMessage = {
         //display when an error occurs in favouriting or adding movie to watchlist
-        (watchlistAction === 'ERROR' || favouriteAction === 'ERROR' )
+        (watchlistActionStatus === 'ERROR' || favouriteActionStatus === 'ERROR' )
         ? <ErrorMessage resetStatus={resetStatus}/>
         : ''
       }
@@ -100,12 +100,11 @@ const WatchLater = (props) => {
 const mapStateToProps = (state) => (
   {
     watchlistStatus: state.status.watchlist,
-    favouriteError: state.status.watchlistError,
     watchlists: state.watchlists.watchLists,
     watchlistIDs: state.watchlists.watchListsID,
     favouriteIDs: state.favourites.favouriteMoviesID,
-    watchlistAction: state.status.watchlistAction,
-    favouriteAction: state.status.favouriteAction
+    watchlistActionStatus: state.status.watchlistAction,
+    favouriteActionStatus: state.status.favouriteAction
   }
 );
   

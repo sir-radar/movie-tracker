@@ -3,6 +3,7 @@
 exports[`matches snapshot 1`] = `
 <section
   className="no-data mt-5 mx-auto"
+  data-testid="nodata-component"
 >
   <h2
     data-testid="nodata"

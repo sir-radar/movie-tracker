@@ -23,7 +23,7 @@ it("should call resetStatus after timing out", () => {
     jest.advanceTimersByTime(100);
   });
   expect(resetStatus).not.toHaveBeenCalled();
-  // and then move ahead by 5 seconds
+  // and then move ahead by 2 seconds
   act(() => {
     jest.advanceTimersByTime(2000);
   });

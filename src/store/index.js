@@ -15,6 +15,5 @@ export default createStore(
     auth,
     watchlists
   }),
-  {},
   applyMiddleware(thunk)
 )

@@ -2,7 +2,7 @@
 
 exports[`ErrorMessage Component matches snapshot 1`] = `
 <div
-  className="w-25 bg-danger text-white text-center message"
+  className="w-auto bg-danger p-1 text-white text-center message"
   data-testid="error-message"
 >
   Something went wrong

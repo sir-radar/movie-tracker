@@ -11,10 +11,6 @@ import configureStore from "redux-mock-store";
 
 const buildStore = configureStore([thunk]);
 
-//reducers
-import auth from '../../../store/reducers/authReducer';
-
-
 
 afterEach(cleanup)
 
@@ -35,7 +31,9 @@ describe('Favourite Page Component', () => {
   it("renders without crashing", async () => {
 
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -57,7 +55,9 @@ describe('Favourite Page Component', () => {
   it("renders nav component", () => {
 
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -81,7 +81,9 @@ describe('Favourite Page Component', () => {
   it("renders loading component on pending request", () => {
 
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -107,7 +109,9 @@ describe('Favourite Page Component', () => {
   it("renders Movie Card component on successful request with at least one result", () => {
 
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -140,7 +144,9 @@ describe('Favourite Page Component', () => {
 
   it("renders NoData component on successful request with empty data", () => {
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -171,7 +177,9 @@ describe('Favourite Page Component', () => {
   it("renders Error component on failed request", () => {
     
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -201,7 +209,9 @@ describe('Favourite Page Component', () => {
 
   it("renders Pagination component on successful request with more than 20 results", () => {
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -236,7 +246,9 @@ describe('Favourite Page Component', () => {
 
   it("renders Error Message component on failed add/remove favourite or watchlist request", () => {
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },
@@ -272,7 +284,9 @@ describe('Favourite Page Component', () => {
 
   it("matches snapshot", () => {
     const states = {
-      auth,
+      auth:{
+        session_id: "GHHjsjskkslsllsghsjsksk"
+      },
       watchlists:{
         watchListsID:[1,2,3],
       },

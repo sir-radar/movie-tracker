@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageLayout Component matches snapshot 1`] = `
+<main
+  className="mt-4 p-3 col-10 col-md-10 offset-1 offset-md-1"
+>
+  <div
+    className="row"
+  />
+</main>
+`;

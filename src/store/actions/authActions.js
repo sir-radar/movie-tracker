@@ -17,7 +17,7 @@ export function getSessionID() {
         const response = await API.createSession();
         dispatch(createSession(response.data.session_id))
       }catch(error){
-        dispatch(createSessionFailure(error.response.data))
+        dispatch(createSessionFailure(error.response))
       }
     }
   }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`NoData Component matches snapshot 1`] = `
 <section
   className="no-data mt-5 mx-auto"
   data-testid="nodata-component"

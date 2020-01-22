@@ -11,17 +11,21 @@ const renderComponent = () => {
   return render(<Error/>, div)
 }
 
-it("renders without crashing", () => {
-  renderComponent()
-})
+describe('Error Component', () => {
 
-it("renders page texts correctly", () => {
-  const { getByTestId } = renderComponent()
-  expect(getByTestId('error-header')).toHaveTextContent("Opps")
-  expect(getByTestId('error-body')).toHaveTextContent("Something went wrong. Please check your internet and try again")
-})
+  it("renders without crashing", () => {
+    renderComponent()
+  })
 
-it("matches snapshot", () => {
-  const tree = renderer.create(<Error/>).toJSON();
-  expect(tree).toMatchSnapshot();
+  it("renders page texts correctly", () => {
+    const { getByTestId } = renderComponent()
+    expect(getByTestId('error-header')).toHaveTextContent("Opps")
+    expect(getByTestId('error-body')).toHaveTextContent("Something went wrong. Please check your internet and try again")
+  })
+
+  it("matches snapshot", () => {
+    const tree = renderer.create(<Error/>).toJSON();
+    expect(tree).toMatchSnapshot();
+  })
+
 })

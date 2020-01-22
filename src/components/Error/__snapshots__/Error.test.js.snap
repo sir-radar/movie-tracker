@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`Error Component matches snapshot 1`] = `
 <section
   className="loading mt-5 mx-auto text-center"
   data-testid="error"

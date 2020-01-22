@@ -11,16 +11,20 @@ const renderComponent = () => {
   return render(<NoData/>, div)
 }
 
-it("renders without crashing", () => {
-  renderComponent()
-})
+describe('NoData Component', () => {
 
-it("renders the router links", () => {
-  const { getByTestId } = renderComponent()
-  expect(getByTestId('nodata')).toHaveTextContent("No data to display")
-})
+  it("renders without crashing", () => {
+    renderComponent()
+  })
 
-it("matches snapshot", () => {
-  const tree = renderer.create(<NoData/>).toJSON();
-  expect(tree).toMatchSnapshot();
+  it("renders the router links", () => {
+    const { getByTestId } = renderComponent()
+    expect(getByTestId('nodata')).toHaveTextContent("No data to display")
+  })
+
+  it("matches snapshot", () => {
+    const tree = renderer.create(<NoData/>).toJSON();
+    expect(tree).toMatchSnapshot();
+  })
+
 })

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`MovieCard Component matches snapshot 1`] = `
 <div
   className="col-md-3 mt-2"
   data-testid="movie-card"

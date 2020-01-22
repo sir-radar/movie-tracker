@@ -11,12 +11,16 @@ const renderComponent = () => {
   return render(<Loader/>, div)
 }
 
-it("renders without crashing", () => {
-  renderComponent()
-})
+describe('Header Component', () => {
+
+  it("renders without crashing", () => {
+    renderComponent()
+  })
 
 
-it("matches snapshot", () => {
-  const tree = renderer.create(<Loader/>).toJSON();
-  expect(tree).toMatchSnapshot();
+  it("matches snapshot", () => {
+    const tree = renderer.create(<Loader/>).toJSON();
+    expect(tree).toMatchSnapshot();
+  })
+
 })

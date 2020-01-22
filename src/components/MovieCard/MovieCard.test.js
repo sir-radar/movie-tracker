@@ -25,73 +25,76 @@ const propsData = {
   watchlistIDs: [1,2,3,4]
 };
 
-it("renders without crashing", () => {
-  renderComponent(propsData)
-})
+describe('MovieCard Component', () => {
 
-it("renders movie card details", () => {
-  const { getByTestId } = renderComponent(propsData)
-  expect(getByTestId('movie-title')).toHaveTextContent(propsData.title)
-  expect(getByTestId('movie-overview')).toHaveTextContent(propsData.overview)
-  expect(getByTestId('movie-details-link')).toHaveTextContent("See Details")
-})
+  it("renders without crashing", () => {
+    renderComponent(propsData)
+  })
 
-it("display favourite sign if movie is marked as favourite", () => {
-  const { getByTestId, queryByTestId } = renderComponent(propsData)
-  expect(getByTestId('active-favourite')).not.toBeNull()
-  expect(queryByTestId('inactive-favourite')).toBeNull()
-})
+  it("renders movie card details", () => {
+    const { getByTestId } = renderComponent(propsData)
+    expect(getByTestId('movie-title')).toHaveTextContent(propsData.title)
+    expect(getByTestId('movie-overview')).toHaveTextContent(propsData.overview)
+    expect(getByTestId('movie-details-link')).toHaveTextContent("See Details")
+  })
 
-it("display unfavourite sign if movie is not marked as favourite", () => {
-  const { queryByTestId } = renderComponent({...propsData, id:10})
-  expect(queryByTestId('active-favourite')).toBeNull()
-  expect(queryByTestId('inactive-favourite')).not.toBeNull()
-})
+  it("display favourite sign if movie is marked as favourite", () => {
+    const { getByTestId, queryByTestId } = renderComponent(propsData)
+    expect(getByTestId('active-favourite')).not.toBeNull()
+    expect(queryByTestId('inactive-favourite')).toBeNull()
+  })
 
-it("should call removeFavourite after favourite sign is clicked", () => {
-  const { queryByTestId } = renderComponent(propsData)
-  fireEvent.click(queryByTestId('active-favourite'))
-  expect(propsData.removeFavourite).toHaveBeenCalled()
-})
+  it("display unfavourite sign if movie is not marked as favourite", () => {
+    const { queryByTestId } = renderComponent({...propsData, id:10})
+    expect(queryByTestId('active-favourite')).toBeNull()
+    expect(queryByTestId('inactive-favourite')).not.toBeNull()
+  })
 
-it("should call addToFavourite after unfavourite sign is clicked", () => {
-  const { queryByTestId } = renderComponent({...propsData, id:10})
-  fireEvent.click(queryByTestId('inactive-favourite'))
-  expect(propsData.addToFavourite).toHaveBeenCalled()
-})
+  it("should call removeFavourite after favourite sign is clicked", () => {
+    const { queryByTestId } = renderComponent(propsData)
+    fireEvent.click(queryByTestId('active-favourite'))
+    expect(propsData.removeFavourite).toHaveBeenCalled()
+  })
 
-it("display active watchlist button if movie is marked as watchlist", () => {
-  const { getByTestId, queryByTestId } = renderComponent(propsData)
-  expect(getByTestId('active-watchlist')).not.toBeNull()
-  expect(queryByTestId('inactive-watchlist')).toBeNull()
-})
+  it("should call addToFavourite after unfavourite sign is clicked", () => {
+    const { queryByTestId } = renderComponent({...propsData, id:10})
+    fireEvent.click(queryByTestId('inactive-favourite'))
+    expect(propsData.addToFavourite).toHaveBeenCalled()
+  })
 
-it("display inactive watchlist button if movie is not marked as watchlist", () => {
-  const { queryByTestId } = renderComponent({...propsData, id:10})
-  expect(queryByTestId('active-watchlist')).toBeNull()
-  expect(queryByTestId('inactive-watchlist')).not.toBeNull()
-})
+  it("display active watchlist button if movie is marked as watchlist", () => {
+    const { getByTestId, queryByTestId } = renderComponent(propsData)
+    expect(getByTestId('active-watchlist')).not.toBeNull()
+    expect(queryByTestId('inactive-watchlist')).toBeNull()
+  })
 
-it("should call removeFromWatchList after active watchlist button is clicked", () => {
-  const { queryByTestId } = renderComponent(propsData)
-  fireEvent.click(queryByTestId('active-watchlist'))
-  expect(propsData.removeFromWatchList).toHaveBeenCalled()
-})
+  it("display inactive watchlist button if movie is not marked as watchlist", () => {
+    const { queryByTestId } = renderComponent({...propsData, id:10})
+    expect(queryByTestId('active-watchlist')).toBeNull()
+    expect(queryByTestId('inactive-watchlist')).not.toBeNull()
+  })
 
-it("should call addToWatchList after inactive watchlist button is clicked", () => {
-  const { queryByTestId } = renderComponent({...propsData, id:10})
-  fireEvent.click(queryByTestId('inactive-watchlist'))
-  expect(propsData.addToWatchList).toHaveBeenCalled()
-})
+  it("should call removeFromWatchList after active watchlist button is clicked", () => {
+    const { queryByTestId } = renderComponent(propsData)
+    fireEvent.click(queryByTestId('active-watchlist'))
+    expect(propsData.removeFromWatchList).toHaveBeenCalled()
+  })
 
-it("navigates to movie deatils page when you click the movie details page link", () => {
-  const { getByTestId } = renderComponent(propsData)
-  fireEvent.click(getByTestId('movie-details-link'));
-  // expect(document.body.textContent).toBe("Movies details")
-  // expect(getByTestId('watchlater').classList.contains('active')).toBe(true)
-})
+  it("should call addToWatchList after inactive watchlist button is clicked", () => {
+    const { queryByTestId } = renderComponent({...propsData, id:10})
+    fireEvent.click(queryByTestId('inactive-watchlist'))
+    expect(propsData.addToWatchList).toHaveBeenCalled()
+  })
 
-it("matches snapshot", () => {
-  const tree = renderer.create(<MemoryRouter><MovieCard {...propsData}/></MemoryRouter>).toJSON();
-  expect(tree).toMatchSnapshot();
-})
+  // it("navigates to movie deatils page when you click the movie details page link", () => {
+  //   const { getByTestId } = renderComponent(propsData)
+  //   fireEvent.click(getByTestId('movie-details-link'));
+  //   expect(document.querySelector('[data-testid="movie-details-page"]')).not.toBeNull()
+  // })
+
+  it("matches snapshot", () => {
+    const tree = renderer.create(<MemoryRouter><MovieCard {...propsData}/></MemoryRouter>).toJSON();
+    expect(tree).toMatchSnapshot();
+  })
+
+});

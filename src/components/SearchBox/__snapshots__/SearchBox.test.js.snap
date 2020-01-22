@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`SearchBox Component matches snapshot 1`] = `
 <div
   className="row justify-content-center"
   data-testid="search-box"

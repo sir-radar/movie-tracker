@@ -12,23 +12,27 @@ const renderComponent = () => {
   return render(<MemoryRouter><Header/></MemoryRouter>, div)
 }
 
-it("renders without crashing", () => {
-  renderComponent()
-})
+describe('Header Component', () => {
 
-it("renders the router links", () => {
-  const { getByTestId } = renderComponent()
-  expect(getByTestId('header-link')).toHaveTextContent("Movie Tracker")
+  it("renders without crashing", () => {
+    renderComponent()
+  })
 
-})
+  it("renders the router links", () => {
+    const { getByTestId } = renderComponent()
+    expect(getByTestId('header-link')).toHaveTextContent("Movie Tracker")
 
-it("navigates to home page when you click the header link", () => {
-  const { getByTestId } = renderComponent()
-  fireEvent.click(getByTestId('header-link'));
-  expect(location.pathname).toBe('/')
-})
+  })
 
-it("matches snapshot", () => {
-  const tree = renderer.create(<MemoryRouter><Header/></MemoryRouter>).toJSON();
-  expect(tree).toMatchSnapshot();
+  it("navigates to home page when you click the header link", () => {
+    const { getByTestId } = renderComponent()
+    fireEvent.click(getByTestId('header-link'));
+    expect(location.pathname).toBe('/')
+  })
+
+  it("matches snapshot", () => {
+    const tree = renderer.create(<MemoryRouter><Header/></MemoryRouter>).toJSON();
+    expect(tree).toMatchSnapshot();
+  })
+
 })

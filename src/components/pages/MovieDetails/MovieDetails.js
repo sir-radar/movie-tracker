@@ -48,19 +48,19 @@ const MovieDetails = ({movieStatus, match, getMovieDetails, movieDetails }) => {
 
           {
             (movieStatus === "SUCCESS") ? 
-              <div className="col-12 col-md-8 mb">
+              <div data-testid="movie-summary" className="col-12 col-md-8 mb">
                 <div className="col-12">
                   <h2>{movieDetails.title}</h2>
-                  <p><span>Genres:</span> <span>{ movieDetails.genres.map(genre => genre.name) }</span></p>
-                  <p><span>Average vote:</span> <span>{movieDetails.vote_average}</span></p>
-                  <p><span>Language(s):</span><span>{movieDetails.spoken_languages.map(lang => lang.name)}</span></p>
+                  <p><span>Genres: </span> <span>{ movieDetails.genres.map(genre => genre.name) }</span></p>
+                  <p><span>Average vote: </span> <span>{movieDetails.vote_average}</span></p>
+                  <p><span>Language(s): </span><span>{movieDetails.spoken_languages.map(lang => lang.name)}</span></p>
                   <p>{movieDetails.overview}</p>
-                  <p><span>Realease:</span><span>{movieDetails.release_date}</span></p>
-                  <p><span>Duration:</span><span>{movieDetails.runtime} minutes</span></p>
+                  <p><span>Realease: </span><span>{movieDetails.release_date}</span></p>
+                  <p><span>Duration: </span><span>{movieDetails.runtime} minutes</span></p>
 
                   {
                     (!showTrialer && movieDetails.videos.results.length > 0) ? 
-                          <button onClick={(e) => displayTrailer(e)} className="btn btn-primary">Watch Trailer</button>
+                          <button data-testid="trailer-trigger" onClick={(e) => displayTrailer(e)} className="btn btn-primary">Watch Trailer</button>
                           : null
                   }
                   
@@ -70,15 +70,18 @@ const MovieDetails = ({movieStatus, match, getMovieDetails, movieDetails }) => {
             : null
           }
         </div>
-        <div className="col-12 col-md-6 mt-4 mx-0 mx-md-auto">
-            {
-              (showTrialer) ? <YouTube
-                                videoId={movieDetails.videos.results[0].key}
-                                opts={opts}
-                          />
-                : null
-            }
-        </div>
+        {
+          (showTrialer) ? 
+              <div data-testid="trailer" className="col-12 col-md-6 mt-4 mx-0 mx-md-auto">
+                <YouTube
+                  videoId={movieDetails.videos.results[0].key}
+                  opts={opts}
+                />
+              </div>
+
+              : null
+        }
+        
       </main>
     </>
   );

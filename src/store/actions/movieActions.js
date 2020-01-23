@@ -20,7 +20,6 @@ export function getMovieDetails(id) {
    
     API.getMovieDetails(id)
       .then(response => {
-        console.log(response)
         dispatch(getMovieDetailsSuccess(response.data))
       })
       .catch(error => {

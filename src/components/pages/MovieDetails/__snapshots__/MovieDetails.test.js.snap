@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDetails Page Component matches snapshot 1`] = `
+Array [
+  <nav
+    className="d-flex justify-content-center"
+    data-testid="nav"
+  >
+    <a
+      className="p-3 primary-text-color active"
+      data-testid="search"
+      href="/"
+      onClick={[Function]}
+    >
+      Search
+    </a>
+    <a
+      className="p-3 primary-text-color"
+      data-testid="favourite"
+      href="/favourites"
+      onClick={[Function]}
+    >
+      Favorites
+    </a>
+    <a
+      className="p-3 primary-text-color"
+      data-testid="watchlater"
+      href="/watchlist"
+      onClick={[Function]}
+    >
+      WatchLater
+    </a>
+  </nav>,
+  <main
+    className="mt-4 p-3 col-10 col-md-10 offset-0 offset-md-1"
+    data-testid="movie-details-page"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-12 col-md-4"
+        data-testid="movie-poster"
+      >
+        <div
+          className="col-12"
+        >
+          <img
+            alt="..."
+            className="h-25 w-100"
+            src="/no-image.png"
+          />
+        </div>
+      </div>
+      <div
+        className="col-12 col-md-8 mb"
+        data-testid="movie-summary"
+      >
+        <div
+          className="col-12"
+        >
+          <h2 />
+          <p>
+            <span>
+              Genres: 
+            </span>
+             
+            <span />
+          </p>
+          <p>
+            <span>
+              Average vote: 
+            </span>
+             
+            <span />
+          </p>
+          <p>
+            <span>
+              Language(s): 
+            </span>
+            <span />
+          </p>
+          <p />
+          <p>
+            <span>
+              Realease: 
+            </span>
+            <span />
+          </p>
+          <p>
+            <span>
+              Duration: 
+            </span>
+            <span>
+               minutes
+            </span>
+          </p>
+          <button
+            className="btn btn-primary"
+            data-testid="trailer-trigger"
+            onClick={[Function]}
+          >
+            Watch Trailer
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>,
+]
+`;

@@ -86,12 +86,6 @@ describe('MovieCard Component', () => {
     expect(propsData.addToWatchList).toHaveBeenCalled()
   })
 
-  // it("navigates to movie deatils page when you click the movie details page link", () => {
-  //   const { getByTestId } = renderComponent(propsData)
-  //   fireEvent.click(getByTestId('movie-details-link'));
-  //   expect(document.querySelector('[data-testid="movie-details-page"]')).not.toBeNull()
-  // })
-
   it("matches snapshot", () => {
     const tree = renderer.create(<MemoryRouter><MovieCard {...propsData}/></MemoryRouter>).toJSON();
     expect(tree).toMatchSnapshot();

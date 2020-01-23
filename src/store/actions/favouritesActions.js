@@ -58,6 +58,14 @@ export function removeFromFavourite(payload) {
     API.addToFavourite(session_id, payload)
       .then( _ => {
         dispatch(removeFavouriteSuccess(payload.media_id))
+        //move to the previous page when all results in a page is removed
+        //this helps pagination
+        const favouritesMovies = getState().favourites.favouriteMovies;
+        if(favouritesMovies.page > 1 && favouritesMovies.results.length < 1){
+          dispatch(getAllFavourites(--favouritesMovies.page))
+        }else{
+          dispatch(getAllFavourites(favouritesMovies.page))
+        }
       })
       .catch(error => {
         dispatch(removeFavouriteFailure(error.response))
@@ -73,7 +81,7 @@ export function getAllFavourites(page) {
     //checks if session_id exists if not, gets it
     await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
-   
+
     API.getAllFavourites(session_id, page)
       .then(response => {
         dispatch(getFavouritesSuccess(response.data))

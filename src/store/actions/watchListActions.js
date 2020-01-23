@@ -57,6 +57,14 @@ export function removeFromWatchList(payload) {
     API.addToWatchlist(session_id, payload)
       .then( _ => {
         dispatch(removeWatchLaterSuccess(payload.media_id))
+        //move to the previous page when all results in a page is removed
+        //this helps pagination
+        const watchlistMovies = getState().watchlists.watchLists;
+        if(watchlistMovies.page > 1 && watchlistMovies.results.length < 1){
+          dispatch(getAllWatchLists(--watchlistMovies.page))
+        }else{
+          dispatch(getAllWatchLists(watchlistMovies.page))
+        }
       })
       .catch(error => {
         dispatch(removeWatchLaterFailure(error.response))

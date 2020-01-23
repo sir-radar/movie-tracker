@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App container-fluid">
       
-      <Router basename="movie-tracker">
+      <Router>
         <Header/>
           <Switch>
               <Route exact path="/" component={SearchPage} />

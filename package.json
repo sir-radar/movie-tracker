@@ -2,7 +2,6 @@
   "name": "movie-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sir-radar.github.io/movie-tracker",
   "dependencies": {
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.1",
@@ -18,7 +17,6 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "deploy": "npm run build&&gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -43,7 +41,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "fetch-mock": "^8.3.1",
-    "gh-pages": "^2.2.0",
     "react-test-renderer": "^16.12.0",
     "redux-mock-store": "^1.5.4"
   }

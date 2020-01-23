@@ -18,7 +18,7 @@ const renderComponent = (states) => {
   return render(<Provider store={store}><MemoryRouter><App/></MemoryRouter></Provider>, div)
 }
 
-describe('Nav Component', () => {
+describe('App Component', () => {
 
   it("renders without crashing", () => {
     const state = {

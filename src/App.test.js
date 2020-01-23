@@ -3,7 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 import { render, cleanup } from '@testing-library/react';
 import App from './App';
 import "@testing-library/jest-dom/extend-expect";
-import renderer from "react-test-renderer"
 import { Provider } from 'react-redux';
 import thunk from "redux-thunk";
 import configureStore from "redux-mock-store";

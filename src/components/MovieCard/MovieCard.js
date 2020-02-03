@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { getMovieState } from '../../store/actions/movieStateAction';
 
 const MovieCard = (props) => {
 
@@ -9,11 +11,29 @@ const MovieCard = (props) => {
           overview, 
           addToFavourite, 
           removeFavourite, 
-          favouriteIDs,
           removeFromWatchList,
           addToWatchList,
-          watchlistIDs
+          getMovieState
         } = props
+
+  const [movieState, setMovieState] = useState({})
+//  let movieState = {};
+
+  useEffect(() => {
+    //prevents memory leaks and prevents settings state for unrendered component
+    let mounted = true;
+
+    async function movieStateRequest(){
+      const response = await getMovieState(id)
+      if(mounted){
+        setMovieState(response.data)
+      }
+    }
+    movieStateRequest()
+
+    return () => mounted = false;
+    
+  });
 
   //Limits text to the length
   const truncate = (str, length) => str.length > length ? str.substring(0, length) + "..." : str;
@@ -68,11 +88,11 @@ const MovieCard = (props) => {
             <Link data-testid="movie-details-link" to={`movie/${id}`}>See Details</Link>
             <div className="d-flex mt-2">
               {
-                favouriteIDs.includes(id) ? <button data-testid="active-favourite" onClick={removeFromFavouritesHandler} className="btn mr-2"><i className="fa fa-star text-favourite"></i></button>
+                movieState.favorite ? <button data-testid="active-favourite" onClick={removeFromFavouritesHandler} className="btn mr-2"><i className="fa fa-star text-favourite"></i></button>
                   : <button data-testid="inactive-favourite" onClick={makeFavouriteHandler} className="btn mr-2"><i className="fa fa-star"></i></button>
               }
               {
-                watchlistIDs.includes(id) ? <button data-testid="active-watchlist" onClick={removeFromWatchListHandler} className="btn rm-btn-bg">Remove</button>
+                movieState.watchlist ? <button data-testid="active-watchlist" onClick={removeFromWatchListHandler} className="btn rm-btn-bg">Remove</button>
                   : <button data-testid="inactive-watchlist" onClick={addToWatchListHandler} className="btn">Watch later</button>
               }
             </div>
@@ -83,4 +103,10 @@ const MovieCard = (props) => {
   );
 }
 
-export default MovieCard;
+const mapDispatchToProps = (dispatch) => (
+  {
+    getMovieState: (movieId) => dispatch(getMovieState(movieId)),
+  }
+)
+
+export default connect(null, mapDispatchToProps) (MovieCard);

@@ -1,24 +1,18 @@
-//get saved favourite movies id from localstorage
-const favouriteMoviesID = JSON.parse(localStorage.getItem('favourites'));
-const initialState = {
-  favouriteMoviesID: favouriteMoviesID || []
-}
+const initialState = {}
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'SAVE_FAVOURITE_SUCCESS':
-      //save favourite movies id to localstorage
-      localStorage.setItem("favourites", JSON.stringify([...state.favouriteMoviesID, action.favorite]));
-      return {...state, favouriteMoviesID:[...state.favouriteMoviesID, action.favorite]}
+      // return {...state, favouriteMoviesID:[...state.favouriteMoviesID, action.favorite]}
+      break;
     case 'REMOVE_FAVOURITE_SUCCESS':
-      const newFavouriteMoviesId = state.favouriteMoviesID.filter( val => val !== action.favorite );
-      localStorage.setItem("favourites", JSON.stringify(newFavouriteMoviesId));
       //remove favourite from state if it exist
-      if(state.favouriteMovies){
-        const newFavouriteMovies = state.favouriteMovies.results.filter( val => val.id !== action.favorite );
-        return {...state, favouriteMoviesID: [...newFavouriteMoviesId], favouriteMovies: {...state.favouriteMovies, results:[...newFavouriteMovies]}}
-      }
-      return {...state, favouriteMoviesID: [...newFavouriteMoviesId]}
+      // if(state.favouriteMovies){
+      //   const newFavouriteMovies = state.favouriteMovies.results.filter( val => val.id !== action.favorite );
+      //   return {...state, favouriteMovies: {...state.favouriteMovies, results:[...newFavouriteMovies]}}
+      // }
+      // return {...state}
+      break;
     case 'GET_FAVOURITES_SUCCESS':
       return {...state, favouriteMovies: action.favorites}
     default:

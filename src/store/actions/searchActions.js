@@ -20,6 +20,7 @@ export function search(title, page) {
 
     API.search(title, page)
       .then(response => {
+        console.log(response)
         dispatch(searchSuccess(response.data))
       })
       .catch(error => {

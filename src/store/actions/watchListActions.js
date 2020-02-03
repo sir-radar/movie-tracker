@@ -5,18 +5,6 @@ export const watchLaterRequest = () => ({
   type: 'WATCHLIST_REQUEST'
 });
 
-export const saveWatchLaterSuccess = (watchList) => ({
-  type: 'SAVE_WATCHLIST_SUCCESS', watchList
-});
-
-export const saveWatchLaterFailure = (error) => ({
-  type: 'SAVE_WATCHLIST_FAILURE', error
-});
-
-export const removeWatchLaterSuccess = (watchList) => ({
-  type: 'REMOVE_WATCHLIST_SUCCESS', watchList
-});
-
 export const removeWatchLaterFailure = (error) => ({
   type: 'REMOVE_WATCHLIST_FAILURE', error
 });
@@ -33,17 +21,11 @@ export const getWatchLaterFailure = (error) => ({
 
 //adds movie to watchlist
 export function addToWatchList(payload) {
-  return (dispatch, getState) => {
+  return (_, getState) => {
 
     const session_id = getState().auth.session_id;
     
-    API.addToWatchlist(session_id, payload)
-      .then( _ => {
-        dispatch(saveWatchLaterSuccess(payload.media_id))
-      })
-      .catch(error => {
-        dispatch(saveWatchLaterFailure(error.response))
-      });
+    API.addOrRemoveWatchlist(session_id, payload)
   }
 }
 
@@ -54,9 +36,8 @@ export function removeFromWatchList(payload) {
     await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
     
-    API.addToWatchlist(session_id, payload)
+    API.addOrRemoveWatchlist(session_id, payload)
       .then( _ => {
-        dispatch(removeWatchLaterSuccess(payload.media_id))
         //move to the previous page when all results in a page is removed
         //this helps pagination
         const watchlistMovies = getState().watchlists.watchLists;

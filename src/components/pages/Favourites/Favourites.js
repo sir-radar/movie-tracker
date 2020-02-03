@@ -16,9 +16,7 @@ const Favourites = (props) => {
           favouriteMovies, 
           removeFavourite, 
           getAllFavourites, 
-          favouriteIDs, 
           favouriteStatus, 
-          watchlistIDs,  
           removeFromWatchList,
           addToWatchList,
           watchlistActionStatus,
@@ -46,8 +44,6 @@ const Favourites = (props) => {
             image={result.poster_path}
             overview={result.overview}
             removeFavourite={removeFavourite}
-            favouriteIDs={favouriteIDs}
-            watchlistIDs={watchlistIDs}
             removeFromWatchList={removeFromWatchList}
             addToWatchList={addToWatchList}
           />) 
@@ -102,8 +98,6 @@ const mapStateToProps = (state) => (
   {
     favouriteStatus: state.status.favourite,
     favouriteMovies: state.favourites.favouriteMovies,
-    favouriteIDs: state.favourites.favouriteMoviesID,
-    watchlistIDs: state.watchlists.watchListsID,
     watchlistActionStatus: state.status.watchlistAction,
     favouriteActionStatus: state.status.favouriteAction
   }

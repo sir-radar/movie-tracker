@@ -15,12 +15,10 @@ const WatchLater = (props) => {
 
   const { watchlists,
           removeFromWatchList, 
-          getAllWatchLists, 
-          watchlistIDs, 
+          getAllWatchLists,  
           watchlistStatus,
           removeFavourite,
           addToFavourite,
-          favouriteIDs,
           watchlistActionStatus,
           favouriteActionStatus,
           resetStatus
@@ -47,8 +45,6 @@ const WatchLater = (props) => {
             removeFromWatchList={removeFromWatchList}
             addToFavourite={addToFavourite}
             removeFavourite={removeFavourite}
-            favouriteIDs={favouriteIDs}
-            watchlistIDs={watchlistIDs}
           />) 
         
         : null
@@ -101,8 +97,6 @@ const mapStateToProps = (state) => (
   {
     watchlistStatus: state.status.watchlist,
     watchlists: state.watchlists.watchLists,
-    watchlistIDs: state.watchlists.watchListsID,
-    favouriteIDs: state.favourites.favouriteMoviesID,
     watchlistActionStatus: state.status.watchlistAction,
     favouriteActionStatus: state.status.favouriteAction
   }

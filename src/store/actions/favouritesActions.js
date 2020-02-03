@@ -5,18 +5,6 @@ export const favouriteRequest = () => ({
   type: 'FAVORITE_REQUEST'
 });
 
-export const saveFavouriteSuccess = (favorite) => ({
-  type: 'SAVE_FAVOURITE_SUCCESS', favorite
-});
-
-export const saveFavouriteFailure = (error) => ({
-  type: 'SAVE_FAVOURITE_FAILURE', error
-});
-
-export const removeFavouriteSuccess = (favorite) => ({
-  type: 'REMOVE_FAVOURITE_SUCCESS', favorite
-});
-
 export const removeFavouriteFailure = (favorite) => ({
   type: 'REMOVE_FAVOURITE_FAILURE', favorite
 });
@@ -38,13 +26,7 @@ export function addToFavourite(payload) {
     await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
    
-    API.addToFavourite(session_id, payload)
-      .then( _ => {
-        dispatch(saveFavouriteSuccess(payload.media_id))
-      })
-      .catch(error => {
-        dispatch(saveFavouriteFailure(error.response))
-      });
+    API.addOrRemoveFavourite(session_id, payload)
   }
 }
 
@@ -55,9 +37,8 @@ export function removeFromFavourite(payload) {
     await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
     
-    API.addToFavourite(session_id, payload)
+    API.addOrRemoveFavourite(session_id, payload)
       .then( _ => {
-        dispatch(removeFavouriteSuccess(payload.media_id))
         //move to the previous page when all results in a page is removed
         //this helps pagination
         const favouritesMovies = getState().favourites.favouriteMovies;

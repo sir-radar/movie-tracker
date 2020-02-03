@@ -19,11 +19,9 @@ const SearchPage = (props) => {
           movies, 
           addToFavourite, 
           removeFavourite, 
-          favouriteIDs, 
           search,
           removeFromWatchList,
           addToWatchList,
-          watchlistIDs,
           watchlistActionStatus,
           favouriteActionStatus,
           resetStatus
@@ -64,10 +62,8 @@ const SearchPage = (props) => {
                 overview={result.overview}
                 addToFavourite={addToFavourite}
                 removeFavourite={removeFavourite}
-                favouriteIDs={favouriteIDs}
                 removeFromWatchList={removeFromWatchList}
                 addToWatchList={addToWatchList}
-                watchlistIDs={watchlistIDs}
               />) 
             
             : null
@@ -121,9 +117,7 @@ const mapStateToProps = (state) => (
     searchStatus: state.status.search,
     watchlistActionStatus: state.status.watchlistAction,
     favouriteActionStatus: state.status.favouriteAction,
-    movies: state.search,
-    favouriteIDs: state.favourites.favouriteMoviesID,
-    watchlistIDs: state.watchlists.watchListsID,
+    movies: state.search
   }
 );
   

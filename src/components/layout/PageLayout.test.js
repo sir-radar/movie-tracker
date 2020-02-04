@@ -10,14 +10,29 @@ import NoData from '../NoData/NoData';
 import Pagination from '../Pagination/Pagination';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import "@testing-library/jest-dom/extend-expect";
+import { Provider } from 'react-redux';
 import renderer from "react-test-renderer";
+import thunk from "redux-thunk";
+import configureStore from "redux-mock-store";
+
+const buildStore = configureStore([thunk]);
 
 
 afterEach(cleanup)
 
 const renderComponent = (props={}) => {
+  const states = {
+    search:{},
+    favourites:{},
+    status:{},
+    watchlists:{},
+    auth:{
+      session_id: "kkekdllldldll"
+    }
+  }
+  const store = buildStore({...states});
   const div = document.createElement("div");
-  return render(<MemoryRouter><PageLayout {...props}/></MemoryRouter>, div)
+  return render(<Provider store={store}><MemoryRouter><PageLayout {...props}/></MemoryRouter></Provider>, div)
 }
 
 describe('PageLayout Component', () => {
@@ -67,10 +82,8 @@ describe('PageLayout Component', () => {
       overview: "Movie overview", 
       addToFavourite: jest.fn(), 
       removeFavourite: jest.fn(), 
-      favouriteIDs: [1,2,3,4],
       removeFromWatchList: jest.fn(),
       addToWatchList: jest.fn(),
-      watchlistIDs: [1,2,3,4]
     };
     const { queryByTestId } = renderComponent({pageContent: <MovieCard {...movieCarPpropsData}/>})
     expect(queryByTestId("nav")).toBeNull()

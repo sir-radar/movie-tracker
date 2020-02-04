@@ -8,15 +8,6 @@ import { Provider } from 'react-redux';
 import thunk from "redux-thunk";
 import configureStore from "redux-mock-store";
 
-//reducers
-// import search from '../../../store/reducers/searchReducer';
-// import status from '../../../store/reducers/statusReducer';
-// import favourites from '../../../store/reducers/favouritesReducer';
-// import watchlists from '../../../store/reducers/watchListReducer';
-
-//actions
-// import {searchRequest} from '../../../store/actions/searchActions';
-
 const buildStore = configureStore([thunk]);
 
 afterEach(cleanup)
@@ -268,7 +259,7 @@ describe('Search Page Component', () => {
       status:{},
       watchlists:{}
     }
-    const tree = renderer.create(renderComponentForSnapshot(reducers)).toJSON();
+    const tree = renderer.create(renderComponentForSnapshot(states)).toJSON();
     expect(tree).toMatchSnapshot();
   })
 

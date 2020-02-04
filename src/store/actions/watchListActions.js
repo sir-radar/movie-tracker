@@ -21,11 +21,12 @@ export const getWatchLaterFailure = (error) => ({
 
 //adds movie to watchlist
 export function addToWatchList(payload) {
-  return (_, getState) => {
+  return async(dispatch, getState) => {
 
+    await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
     
-    API.addOrRemoveWatchlist(session_id, payload)
+    return await API.addOrRemoveWatchlist(session_id, payload)
   }
 }
 

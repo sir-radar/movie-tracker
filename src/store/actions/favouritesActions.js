@@ -26,7 +26,7 @@ export function addToFavourite(payload) {
     await dispatch(getSessionID())
     const session_id = getState().auth.session_id;
    
-    API.addOrRemoveFavourite(session_id, payload)
+    return await API.addOrRemoveFavourite(session_id, payload)
   }
 }
 
@@ -42,6 +42,7 @@ export function removeFromFavourite(payload) {
         //move to the previous page when all results in a page is removed
         //this helps pagination
         const favouritesMovies = getState().favourites.favouriteMovies;
+
         if(favouritesMovies.page > 1 && favouritesMovies.results.length < 1){
           dispatch(getAllFavourites(--favouritesMovies.page))
         }else{

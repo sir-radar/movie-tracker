@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from "react-router-dom";
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, act } from '@testing-library/react';
 import MovieCard from './MovieCard';
 import "@testing-library/jest-dom/extend-expect";
 import renderer from "react-test-renderer"
@@ -72,7 +72,9 @@ describe('MovieCard Component', () => {
 
   it("should call addToFavourite after unfavourite sign is clicked", () => {
     const { queryByTestId } = renderComponent(states, {...propsData, id:10})
-    fireEvent.click(queryByTestId('inactive-favourite'))
+    act(() => {
+      fireEvent.click(queryByTestId('inactive-favourite'))
+    });
     expect(propsData.addToFavourite).toHaveBeenCalled()
   })
 
@@ -84,7 +86,9 @@ describe('MovieCard Component', () => {
 
   it("should call addToWatchList after inactive watchlist button is clicked", () => {
     const { queryByTestId } = renderComponent(states, {...propsData, id:10})
-    fireEvent.click(queryByTestId('inactive-watchlist'))
+    act(() => {
+      fireEvent.click(queryByTestId('inactive-watchlist'))
+    });
     expect(propsData.addToWatchList).toHaveBeenCalled()
   })
 

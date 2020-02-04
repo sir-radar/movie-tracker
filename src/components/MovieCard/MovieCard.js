@@ -13,66 +13,77 @@ const MovieCard = (props) => {
           removeFavourite, 
           removeFromWatchList,
           addToWatchList,
-          getMovieState
+          getMovieState,
+          favouriteAction,
+          watchlistAction
         } = props
 
   const [movieState, setMovieState] = useState({})
-//  let movieState = {};
 
   useEffect(() => {
-    //prevents memory leaks and prevents settings state for unrendered component
-    let mounted = true;
-
+    //checks if movie is a favourite or on the watchlist
     async function movieStateRequest(){
       const response = await getMovieState(id)
-      if(mounted){
-        setMovieState(response.data)
-      }
+      setMovieState(response.data)
     }
+  
     movieStateRequest()
-
-    return () => mounted = false;
     
-  });
+  }, [getMovieState, id]);
 
-  //Limits text to the length
+  //Limits text to the length given
   const truncate = (str, length) => str.length > length ? str.substring(0, length) + "..." : str;
 
-  const makeFavouriteHandler = (e) =>{
+  const makeFavouriteHandler = async (e) =>{
+    e.preventDefault()
     const data = {
       "media_type": "movie",
       "media_id": id,
       "favorite": true
     };
-    e.preventDefault()
-    addToFavourite(data)
+    await addToFavourite(data)
+    if(favouriteAction !== 'ERROR'){
+      setMovieState((prevSate) => ({...prevSate, favorite:true}))
+    }
   }
 
-  const removeFromFavouritesHandler = () => {
+  const removeFromFavouritesHandler = (e) => {
+    e.preventDefault()
     const data = {
       "media_type": "movie",
       "media_id": id,
       "favorite": false
     };
     removeFavourite(data)
+    if(favouriteAction !== 'ERROR'){
+      setMovieState((prevSate) => ({...prevSate, favorite:false}))
+    }
   }
 
-  const addToWatchListHandler = () => {
+  const addToWatchListHandler = async (e) => {
+    e.preventDefault()
     const data = {
       "media_type": "movie",
       "media_id": id,
       "watchlist": true
     };
-    addToWatchList(data)
+    await addToWatchList(data)
+    if(watchlistAction !== 'ERROR'){
+      setMovieState((prevSate) => ({...prevSate, watchlist:true}))
+    }
   }
 
-  const removeFromWatchListHandler = () => {
+  const removeFromWatchListHandler = (e) => {
+    e.preventDefault()
     const data = {
       "media_type": "movie",
       "media_id": id,
       "watchlist": false
     };
     removeFromWatchList(data)
+    if(watchlistAction !== 'ERROR'){
+      setMovieState((prevSate) => ({...prevSate, watchlist:false}))
+    }
   }
 
   return (
@@ -103,10 +114,17 @@ const MovieCard = (props) => {
   );
 }
 
+const mapStateToProps = (state) => (
+  {
+    favouriteAction: state.status.favouriteAction,
+    watchlistAction: state.status.watchlistAction
+  }
+);
+
 const mapDispatchToProps = (dispatch) => (
   {
     getMovieState: (movieId) => dispatch(getMovieState(movieId)),
   }
 )
 
-export default connect(null, mapDispatchToProps) (MovieCard);
+export default connect(mapStateToProps, mapDispatchToProps) (MovieCard);

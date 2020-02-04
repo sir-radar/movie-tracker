@@ -45,19 +45,19 @@ exports[`MovieCard Component matches snapshot 1`] = `
         >
           <button
             className="btn mr-2"
-            data-testid="active-favourite"
+            data-testid="inactive-favourite"
             onClick={[Function]}
           >
             <i
-              className="fa fa-star text-favourite"
+              className="fa fa-star"
             />
           </button>
           <button
-            className="btn rm-btn-bg"
-            data-testid="active-watchlist"
+            className="btn"
+            data-testid="inactive-watchlist"
             onClick={[Function]}
           >
-            Remove
+            Watch later
           </button>
         </div>
       </div>
